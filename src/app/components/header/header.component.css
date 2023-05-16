@@ -1,0 +1,27 @@
+.navbar-expand-lg .navbar-toggler {
+  display: block;
+}
+
+.navbar-toggler {
+  border: 0px;
+  /* padding: 0px; */
+}
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+}
+
+.dropdown-menu {
+  top: 58px;
+  right: 5px;
+}

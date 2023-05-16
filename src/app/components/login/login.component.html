@@ -1,0 +1,42 @@
+<!-- <div class="container-fluid vh-100" style="margin-top:300px"> -->
+<div class="container-fluid">
+  <div class="" style="margin-top:200px">
+    <div class="rounded d-flex justify-content-center">
+      <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
+        <div class="text-center">
+          <h5 class="text">Welcome back!</h5>
+          <h5 class="text"> Log in to your account.</h5>
+        </div>
+        <form action="" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <div class="p-4">
+            <div class="input-group mb-3">
+              <span class="input-group-text bg-primary"><i class="bi bi-person-plus-fill text-white"></i></span>
+              <input type="text" class="form-control col-12" placeholder="Username" formControlName="username">
+              <span *ngIf="(isSubmitted || userForm.get('username')?.touched) && userForm.get('username')?.invalid"
+                class="text-danger col-12">
+                *Please enter Username
+              </span>
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text bg-primary"><i class="bi bi-key-fill text-white"></i></span>
+              <input type="password" class="form-control col-12" placeholder="password" formControlName="password">
+              <span *ngIf="(isSubmitted || userForm.get('password')?.touched) && userForm.get('password')?.invalid"
+                class="text-danger col-12">
+                *Please enter Password
+              </span>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Remember Me
+              </label>
+            </div>
+            <button class="btn btn-primary text-center mt-2" type="submit">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

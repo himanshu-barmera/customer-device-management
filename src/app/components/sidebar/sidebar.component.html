@@ -1,0 +1,38 @@
+<div class="l-navbar" id="nav-bar" [ngClass]="{'show':isSidebarVisible}">
+  <nav class="nav">
+    <div>
+      <a routerLink="/dashboard" class="nav_logo">
+        <i class='bx bx-layer nav_logo-icon'></i>
+        <span class="nav_logo-name">BBB</span>
+      </a>
+      <div class="nav_list">
+        <a routerLink="/dashboard" routerLinkActive="active" class="nav_link">
+          <i class='bi bi-house nav_icon'></i>
+          <span class="nav_name">Dashboard</span>
+        </a>
+        <a class="nav_link" routerLinkActive="active" routerLink="/user">
+          <!-- <i class='bx bx-user nav_icon'></i> -->
+          <i class="bi bi-person nav_icon"></i>
+          <span class="nav_name">Users Management</span>
+        </a>
+        <a class="nav_link" routerLinkActive="active" routerLink="/device">
+          <i class='bi bi-list-task nav_icon'></i>
+          <span class="nav_name">Device Management</span>
+        </a>
+        <a class="nav_link" routerLinkActive="active" routerLink="/role">
+          <!-- <i class='bx bx-bookmark nav_icon'></i> -->
+          <i class="bi bi-people nav_icon"></i>
+          <span class="nav_name">Role Management</span>
+        </a>
+        <!-- <a href="#" class="nav_link">
+          <i class='bx bx-folder nav_icon'></i>
+          <span class="nav_name">Files</span>
+        </a>
+        <a href="#" class="nav_link">
+          <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+          <span class="nav_name">Stats</span>
+        </a> -->
+      </div>
+    </div>
+  </nav>
+</div>
