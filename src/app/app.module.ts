@@ -14,6 +14,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 // import { DropdownDirective } from './core/directive/dropdown.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgMaterialModule } from './ng-material.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
