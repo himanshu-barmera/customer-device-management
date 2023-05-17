@@ -5,14 +5,18 @@ import { DeviceManagementRoutingModule } from './device-management-routing.modul
 import { DeviceListComponent } from './device-list/device-list.component';
 import { NgMaterialModule } from 'src/app/ng-material.module';
 import { SharedModule } from 'src/app/shared.module';
+import { DeviceAddEditComponent } from './device-add-edit/device-add-edit.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    DeviceListComponent
+    DeviceListComponent,
+    DeviceAddEditComponent
   ],
   imports: [
     CommonModule,
     DeviceManagementRoutingModule,
+    ReactiveFormsModule,
     NgMaterialModule,
     SharedModule
   ]
