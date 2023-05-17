@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { DeviceManagementRoutingModule } from './device-management-routing.module';
 import { DeviceListComponent } from './device-list/device-list.component';
-
+import { NgMaterialModule } from 'src/app/ng-material.module';
+import { SharedModule } from 'src/app/shared.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,9 @@ import { DeviceListComponent } from './device-list/device-list.component';
   ],
   imports: [
     CommonModule,
-    DeviceManagementRoutingModule
+    DeviceManagementRoutingModule,
+    NgMaterialModule,
+    SharedModule
   ]
 })
 export class DeviceManagementModule { }

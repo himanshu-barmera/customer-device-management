@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { RoleManagementRoutingModule } from './role-management-routing.module';
 import { RoleListComponent } from './role-list/role-list.component';
+import { NgMaterialModule } from 'src/app/ng-material.module';
+import { SharedModule } from 'src/app/shared.module';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { RoleListComponent } from './role-list/role-list.component';
   ],
   imports: [
     CommonModule,
-    RoleManagementRoutingModule
+    RoleManagementRoutingModule,
+    NgMaterialModule,
+    SharedModule
   ]
 })
 export class RoleManagementModule { }

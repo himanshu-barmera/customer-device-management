@@ -15,6 +15,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 // import { DropdownDirective } from './core/directive/dropdown.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgMaterialModule } from './ng-material.module';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NgMaterialModule } from './ng-material.module';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgMaterialModule
+    NgMaterialModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

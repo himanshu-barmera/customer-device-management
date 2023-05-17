@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("../src/assets/font-css2.css");
+/* @import url("../src/assets/font-css2.css"); */
+/* @import url("../src/assets/css/toaster.css"); */
+
 :root {
   --header-height: 3rem;
   --nav-width: 68px;
@@ -129,6 +131,15 @@ body {
   padding-right: 10px !important;
 }
 
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+  background-image: none !important;
+}
+
 @media screen and (min-width: 768px) {
   body {
     margin: calc(var(--header-height) + 1rem) 0 0 0;
@@ -159,5 +170,11 @@ body {
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
