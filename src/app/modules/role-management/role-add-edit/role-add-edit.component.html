@@ -1,0 +1,58 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="card mat-elevation-z8">
+      <div class="card-body">
+
+        <h2 class="card-title">Add Role</h2>
+
+        <form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+
+          <div class="row my-3">
+            <div class="col-md-6">
+              <label class="mb-1">Title</label>
+              <input type="text" formControlName="title" class="form-control col-12" required
+                [ngClass]="{'is-invalid':isSubmitted && roleForm.get('title')?.invalid }">
+              <span class="col-12 text-danger" *ngIf="isSubmitted && roleForm.get('deviceId')?.invalid">
+                Title is required
+              </span>
+            </div>
+            <div class="col-md-6">
+              <label class="mb-1">Description</label>
+              <input type="text" formControlName="description" class="form-control col-12" required
+                [ngClass]="{'is-invalid':isSubmitted && roleForm.get('description')?.invalid }">
+              <span class="col-12 text-danger" *ngIf="isSubmitted && roleForm.get('description')?.invalid">
+                Description is required
+              </span>
+            </div>
+          </div>
+
+          <div class="row my-3" formArrayName="permissions">
+            <div class="col-md-6">
+              <label class="mb-1">Permissions</label>
+              <ng-container *ngFor="let permission of f.controls; let i=index;" [formGroupName]="i">
+                <p>{{ permission.get('roleId')?.value }}</p>
+                <div class="form-check">
+                  <input class="form-check-input" formControlName="read" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Default checkbox
+                  </label>
+                </div>
+              </ng-container>
+
+            </div>
+          </div>
+
+
+          <div class="row my-3 text-center">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-outline-primary">Submit</button>
+              <button type="button" class="btn btn-outline-danger mx-3" routerLink="/role">Cancel</button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

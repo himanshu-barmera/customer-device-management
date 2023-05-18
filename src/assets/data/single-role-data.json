@@ -1,0 +1,64 @@
+{
+  "error": false,
+  "statusCode": 200,
+  "message": "Roles fetched succesfully",
+  "data": [
+    {
+      "id": "f6af3028-4134-4860-9653-659c741d7b02",
+      "title": "super admin",
+      "slug": "superadmin",
+      "status": 1,
+      "description": "admin",
+      "content": "all permissions",
+      "sysRole": false,
+      "createdAt": "2021-10-16T04:19:16.899Z",
+      "updatedAt": "2021-10-16T04:19:16.899Z",
+      "permissions": [
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "f889116a-213c-42de-a335-3fb4cc4c2e89",
+          "add": false,
+          "read": false,
+          "edit": false,
+          "remove": false,
+          "patch": false,
+          "access": false,
+          "permission": "profile"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "9bbde340-fd7b-4ae0-8854-3a530246f0ed",
+          "add": false,
+          "read": true,
+          "edit": false,
+          "remove": false,
+          "patch": false,
+          "access": true,
+          "permission": "device"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "e3d65942-a47c-4e70-9e16-d47c97c9b955",
+          "add": false,
+          "read": false,
+          "edit": true,
+          "remove": false,
+          "patch": false,
+          "access": false,
+          "permission": "role"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "ff58152a-fb0f-4a33-8819-61f6f912e047",
+          "add": true,
+          "read": true,
+          "edit": true,
+          "remove": true,
+          "patch": false,
+          "access": true,
+          "permission": "user"
+        }
+      ]
+    }
+  ]
+}

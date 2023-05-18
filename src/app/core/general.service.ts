@@ -33,4 +33,9 @@ export class GeneralService {
     return this.http.get('../../assets/data/device-data.json');
   }
 
+  getRoleById(roleId: number): Observable<any> {
+    // return this.http.post('../../assets/data/role-data.json',{roleId});
+    return this.http.get('../../assets/data/single-role-data.json');
+  }
+
 }

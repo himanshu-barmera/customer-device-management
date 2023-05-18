@@ -10,7 +10,8 @@ import { GeneralService } from 'src/app/core/general.service';
 })
 export class DeviceAddEditComponent {
   deviceForm: FormGroup = new FormGroup({});
-  isSubmitted: boolean = false
+  isSubmitted: boolean = false;
+  userList: any = [];
 
   constructor(
     private fb: FormBuilder,
@@ -18,15 +19,28 @@ export class DeviceAddEditComponent {
     private generalS: GeneralService,
     private activateR: ActivatedRoute
   ) {
-    this.deviceForm = this.fb.group({
-      deviceId: ['', [Validators.required]],
-      deviceName: ['', [Validators.required]],
-    })
+
   }
 
   ngOnInit(): void {
     this.activateR.params.subscribe(params => {
       console.log('id => ', params['id'])
+    })
+
+    this.createDeviceForm();
+
+    this.generalS.getAllUser().subscribe(res => {
+      if (res.statusCode === 200) {
+        this.userList = res.data;
+      }
+    })
+  }
+
+  createDeviceForm() {
+    this.deviceForm = this.fb.group({
+      deviceId: ['', [Validators.required]],
+      deviceName: ['', [Validators.required]],
+      user: ['', [Validators.required]],
     })
   }
 

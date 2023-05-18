@@ -5,58 +5,174 @@
   "data": [
     {
       "id": "f6af3028-4134-4860-9653-659c741d7b02",
-      "title": "admin",
-      "slug": "administrator",
+      "title": "super admin",
+      "slug": "superadmin",
       "status": 1,
       "description": "admin",
       "content": "all permissions",
       "sysRole": false,
       "createdAt": "2021-10-16T04:19:16.899Z",
-      "updatedAt": "2021-10-16T04:19:16.899Z"
+      "updatedAt": "2021-10-16T04:19:16.899Z",
+      "permissions": [
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "f889116a-213c-42de-a335-3fb4cc4c2e89",
+          "add": false,
+          "read": false,
+          "edit": false,
+          "remove": false,
+          "patch": false,
+          "access": false,
+          "permission": "profile"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "9bbde340-fd7b-4ae0-8854-3a530246f0ed",
+          "add": false,
+          "read": true,
+          "edit": false,
+          "remove": false,
+          "patch": false,
+          "access": true,
+          "permission": "device"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "e3d65942-a47c-4e70-9e16-d47c97c9b955",
+          "add": false,
+          "read": false,
+          "edit": true,
+          "remove": false,
+          "patch": false,
+          "access": false,
+          "permission": "role"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "ff58152a-fb0f-4a33-8819-61f6f912e047",
+          "add": true,
+          "read": true,
+          "edit": true,
+          "remove": true,
+          "patch": false,
+          "access": true,
+          "permission": "user"
+        }
+      ]
     },
     {
       "id": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
       "title": "user",
       "slug": "user",
-      "status": 1,
+      "status": 0,
       "description": "user",
       "content": "users",
       "sysRole": false,
       "createdAt": "2021-10-16T04:19:16.917Z",
-      "updatedAt": "2021-10-16T04:19:16.917Z"
+      "updatedAt": "2021-10-16T04:19:16.917Z",
+      "permissions": [
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "f889116a-213c-42de-a335-3fb4cc4c2e89",
+          "add": false,
+          "read": false,
+          "edit": false,
+          "remove": false,
+          "patch": false,
+          "access": false,
+          "permission": "profile"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "9bbde340-fd7b-4ae0-8854-3a530246f0ed",
+          "add": false,
+          "read": true,
+          "edit": false,
+          "remove": false,
+          "patch": false,
+          "access": true,
+          "permission": "device"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "e3d65942-a47c-4e70-9e16-d47c97c9b955",
+          "add": false,
+          "read": false,
+          "edit": true,
+          "remove": false,
+          "patch": false,
+          "access": false,
+          "permission": "role"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "ff58152a-fb0f-4a33-8819-61f6f912e047",
+          "add": true,
+          "read": true,
+          "edit": true,
+          "remove": true,
+          "patch": false,
+          "access": true,
+          "permission": "user"
+        }
+      ]
     },
     {
       "id": "6a584786-0aec-4fb2-924a-b33200f74250",
-      "title": "manufacturer",
-      "slug": "manufacture",
-      "status": 1,
+      "title": "customer",
+      "slug": "customer",
+      "status": 0,
       "description": "manufacture",
       "content": "manufacture",
       "sysRole": false,
       "createdAt": "2021-10-16T04:21:23.307Z",
-      "updatedAt": "2021-10-16T04:21:23.307Z"
-    },
-    {
-      "id": "68dd86a6-c1b8-4871-83f3-953443550a23",
-      "title": "demo",
-      "slug": "DEMO",
-      "status": 1,
-      "description": "DEmo",
-      "content": "DEMO",
-      "sysRole": false,
-      "createdAt": "2021-10-29T05:38:41.704Z",
-      "updatedAt": "2021-10-29T05:38:41.704Z"
-    },
-    {
-      "id": "87c93e92-f9ce-44f2-b07f-f423657c66e4",
-      "title": "user1",
-      "slug": "abc",
-      "status": 1,
-      "description": "xyz",
-      "content": "xxx",
-      "sysRole": false,
-      "createdAt": "2021-12-13T06:11:40.596Z",
-      "updatedAt": "2021-12-13T06:11:40.596Z"
+      "updatedAt": "2021-10-16T04:21:23.307Z",
+      "permissions": [
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "f889116a-213c-42de-a335-3fb4cc4c2e89",
+          "add": false,
+          "read": false,
+          "edit": false,
+          "remove": false,
+          "patch": false,
+          "access": false,
+          "permission": "profile"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "9bbde340-fd7b-4ae0-8854-3a530246f0ed",
+          "add": false,
+          "read": true,
+          "edit": false,
+          "remove": false,
+          "patch": false,
+          "access": true,
+          "permission": "device"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "e3d65942-a47c-4e70-9e16-d47c97c9b955",
+          "add": false,
+          "read": false,
+          "edit": true,
+          "remove": false,
+          "patch": false,
+          "access": false,
+          "permission": "role"
+        },
+        {
+          "roleId": "1ec36be7-33ef-4ce0-90f3-accb7291f38e",
+          "permissionId": "ff58152a-fb0f-4a33-8819-61f6f912e047",
+          "add": true,
+          "read": true,
+          "edit": true,
+          "remove": true,
+          "patch": false,
+          "access": true,
+          "permission": "user"
+        }
+      ]
     }
   ]
 }
