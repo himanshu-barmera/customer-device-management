@@ -1,1 +1,41 @@
-<p>device-add-edit works!</p>
+<div class="container my-5">
+  <div class="row">
+    <div class="card mat-elevation-z8">
+      <div class="card-body">
+
+        <h2 class="card-title">Add Device</h2>
+
+        <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
+
+          <div class="row my-3">
+            <div class="col-md-6">
+              <label class="mb-1">Device ID</label>
+              <input type="text" formControlName="deviceId" class="form-control col-12" required
+                [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('deviceId')?.invalid }">
+              <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('deviceId')?.invalid">
+                Device Id is required
+              </span>
+            </div>
+            <div class="col-md-6">
+              <label class="mb-1">Device Name</label>
+              <input type="text" formControlName="deviceName" class="form-control col-12" required
+                [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('deviceName')?.invalid }">
+              <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('deviceName')?.invalid">
+                Device Name is required
+              </span>
+            </div>
+          </div>
+
+          <div class="row my-3 text-center">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-outline-primary">Submit</button>
+              <button type="button" class="btn btn-outline-danger mx-3" routerLink="/device">Cancel</button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+{
+  "error": false,
+  "statusCode": 200,
+  "message": "Device data fetched successfully",
+  "data": [
+    {
+      "id": "ebe8d46c-8df1-4d34-a8a6-86ff3f80f6ee",
+      "devId": "4c752541885e",
+      "status": 1,
+      "createdAt": "2022-01-09T07:04:21.884Z",
+      "numberOfCell": 14,
+      "cellType": "Li-Ion",
+      "deviceName": "SmarTech_14s_885E"
+    },
+    {
+      "id": "6a4172a8-c035-4bb4-b15a-6e3814aca956",
+      "devId": "123456787654",
+      "status": 0,
+      "createdAt": "2022-12-16T05:29:38.603Z",
+      "numberOfCell": null,
+      "cellType": null,
+      "deviceName": "Test mohit"
+    },
+    {
+      "id": "55b206cf-9939-4df7-a2ae-da4dae2a22af",
+      "devId": "34ab95f9b22e",
+      "status": 1,
+      "createdAt": "2022-01-07T09:30:55.909Z",
+      "numberOfCell": 16,
+      "cellType": "Li-Ion",
+      "deviceName": "Joy_BMS_2 Sanchit"
+    },
+    {
+      "id": "c4017596-8e4c-4172-927c-f4dccd878733",
+      "devId": "4c752541ac7a",
+      "status": 1,
+      "createdAt": "2022-01-29T10:22:07.820Z",
+      "numberOfCell": 15,
+      "cellType": "Li-Ion",
+      "deviceName": "Renon_BMS_ESS_AC7A_H"
+    },
+    {
+      "id": "0251e331-d484-4b66-9bff-64b70f20e021",
+      "devId": "34ab95f9b10e",
+      "status": 1,
+      "createdAt": "2022-01-25T04:47:36.115Z",
+      "numberOfCell": 16,
+      "cellType": "Li-Ion",
+      "deviceName": "Kusalava_B10E"
+    },
+    {
+      "id": "4385417d-756c-4ca4-b418-cdc84830ea23",
+      "devId": "4c752540bf5e",
+      "status": 0,
+      "createdAt": "2021-12-29T05:47:33.160Z",
+      "numberOfCell": 16,
+      "cellType": "Li Ion",
+      "deviceName": "Voltherm_BMS_1"
+    },
+    {
+      "id": "e1d5ea51-7f9d-4e95-acae-f2d5c7552ebf",
+      "devId": "1c9dc2d6132a",
+      "status": 0,
+      "createdAt": "2021-12-29T05:51:10.951Z",
+      "numberOfCell": 16,
+      "cellType": "Li Ion",
+      "deviceName": "Shomi_Libatt_BMS_1"
+    }
+  ]
+}

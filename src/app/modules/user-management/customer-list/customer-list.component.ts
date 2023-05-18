@@ -1,19 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import items from 'src/app/data/demo-user-data';
-// import deviceData from 'src/app/data/demo-user-data';
+// import '../../../data/demo-user-data';
 import { MatSort } from '@angular/material/sort';
 import { FormControl } from '@angular/forms';
 import { GeneralService } from 'src/app/core/general.service';
 
 export interface PeriodicElement {
-  id: number,
+  // id: number,
   firstName: string,
   lastName: string,
-  age: number,
-  company: string,
+  email: number,
+  // companyName: string,
+  phoneNumber: number,
+  userName: string,
+  createdAt: string,
   actions: string
 }
 
@@ -22,9 +24,10 @@ export interface PeriodicElement {
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.css']
 })
-export class CustomerListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'age', 'company', 'actions'];
-  dataSource: any = new MatTableDataSource<PeriodicElement>(items);
+export class CustomerListComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'phoneNumber', 'userName', 'createdAt', 'actions'];
+  // dataSource: any = new MatTableDataSource<PeriodicElement>(items);
+  dataSource: any;
   inputControl = new FormControl('');
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -34,10 +37,27 @@ export class CustomerListComponent implements AfterViewInit {
     private generalS: GeneralService
   ) { }
 
+  ngOnInit(): void {
+    this.getAllUserData();
+  }
+
+  getAllUserData() {
+    this.generalS.getAllUser().subscribe(res => {
+      console.log(res);
+      if (res.statusCode === 200) {
+        this.dataSource = new MatTableDataSource<PeriodicElement>(res.data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.generalS.showSuccess(res.message, 'Success');
+      }
+      else
+        this.generalS.showError(res.message, 'Error');
+    })
+  }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {

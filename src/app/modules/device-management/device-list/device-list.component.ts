@@ -1,29 +1,30 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import deviceData from 'src/app/data/demo-device-data';
 import { MatSort } from '@angular/material/sort';
 import { FormControl } from '@angular/forms';
 import { GeneralService } from 'src/app/core/general.service';
 
 export interface PeriodicElement {
-  id: number,
   devId: string,
   deviceName: string,
   cellType: number,
   numberOfCell: number,
+  status: number,
+  createdAt: string,
   actions: string
 }
+
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.component.html',
   styleUrls: ['./device-list.component.css']
 })
-export class DeviceListComponent {
+export class DeviceListComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['id', 'devId', 'deviceName', 'cellType', 'numberOfCell', 'actions'];
-  dataSource: any = new MatTableDataSource<PeriodicElement>(deviceData);
+  displayedColumns: string[] = ['devId', 'deviceName', 'cellType', 'numberOfCell', 'status', 'createdAt', 'actions'];
+  dataSource: any;
   inputControl = new FormControl('');
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -33,11 +34,21 @@ export class DeviceListComponent {
     private generalS: GeneralService
   ) { }
 
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  ngOnInit(): void {
+    this.generalS.getAllDevice().subscribe(res => {
+      if (res.statusCode === 200) {
+        this.dataSource = new MatTableDataSource<PeriodicElement>(res.data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.generalS.showSuccess(res.message, 'Success');
+      }
+      else
+        this.generalS.showError(res.message, 'Error');
+    },
+    )
   }
+
+  ngAfterViewInit() { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

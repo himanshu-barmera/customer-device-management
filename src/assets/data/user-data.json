@@ -1,0 +1,158 @@
+{
+  "error": false,
+  "statusCode": 200,
+  "message": "Users fetched succesfully",
+  "count": 73,
+  "data": [
+    {
+      "id": "7b67b870-255e-43f6-bfa9-2618ccab2c4c",
+      "firstName": "bacancy",
+      "userName": "bacancy",
+      "lastName": "bacancy",
+      "email": "bacancy@gamil.com",
+      "phoneNumber": "9645865633",
+      "companyName": "Bacancy System",
+      "createdAt": "2021-10-16T04:24:34.232Z"
+    },
+    {
+      "id": "ebaf89cc-00c0-4f33-9ff8-01835610cd3a",
+      "firstName": "bms",
+      "userName": "bms",
+      "lastName": "bms",
+      "email": "bms@gmail.com",
+      "phoneNumber": "9974170597",
+      "companyName": "Bacancy System",
+      "createdAt": "2021-10-16T04:24:34.760Z"
+    },
+    {
+      "id": "eef145ff-a267-437b-8faf-e676c471efdd",
+      "firstName": "bms_2",
+      "userName": "BMS_2",
+      "lastName": "Bacancy",
+      "email": "bms@gmail.com",
+      "phoneNumber": "9974170597",
+      "companyName": "Bacancy System",
+      "createdAt": "2021-10-16T04:34:16.851Z"
+    },
+    {
+      "id": "e8b48476-1309-458b-923b-b16980b0bbab",
+      "firstName": "Bacancy",
+      "userName": "localbms",
+      "lastName": "system",
+      "email": "abc@gmail.com",
+      "phoneNumber": "1236457890",
+      "companyName": "Bacancy System ",
+      "createdAt": "2021-10-18T14:27:03.692Z"
+    },
+    {
+      "id": "3faa9d7d-0b5f-440b-87b2-b397458d96cf",
+      "firstName": "Joy",
+      "userName": "Joy_Ebike",
+      "lastName": "E-Bike",
+      "email": "vrushal.vara@bacancy.com",
+      "phoneNumber": "9033086397",
+      "companyName": "Joy E-Bike",
+      "createdAt": "2021-12-30T09:08:46.813Z"
+    },
+    {
+      "id": "c7f1b0dc-8cb7-4b67-bac5-03745da4c0f3",
+      "firstName": "Puneet",
+      "userName": "Naturalbattery_BMS",
+      "lastName": "Jain",
+      "email": "naturalbatterytechnologies@gmail.com",
+      "phoneNumber": "9929943477",
+      "companyName": "naturalbatterytechnologies",
+      "createdAt": "2022-01-07T08:06:01.050Z"
+    },
+    {
+      "id": "085e9655-5de8-4a21-8eeb-ffddb3bb1483",
+      "firstName": "Santosh",
+      "userName": "Smartech_BMS",
+      "lastName": "Chipade",
+      "email": "smartechbattery@gmail.com",
+      "phoneNumber": "9930987646",
+      "companyName": "smartechbattery",
+      "createdAt": "2022-01-07T08:08:21.677Z"
+    },
+    {
+      "id": "e93d6d3b-a829-47eb-b07e-eb98a4e50b03",
+      "firstName": "Magatej",
+      "userName": "Magatej_BMS",
+      "lastName": "Electric",
+      "email": "jugal.patel@bacancy.com",
+      "phoneNumber": "7015404851",
+      "companyName": "Magatej Electric LLP",
+      "createdAt": "2022-01-07T09:01:09.544Z"
+    },
+    {
+      "id": "bb47413b-50b6-43ed-b0f9-8e03013f99cd",
+      "firstName": "mehul",
+      "userName": "leo",
+      "lastName": "leo",
+      "email": "mehul@facebook.com",
+      "phoneNumber": "1234567890",
+      "companyName": "bacancy",
+      "createdAt": "2021-10-21T11:54:06.883Z"
+    },
+    {
+      "id": "a25db0b8-a448-49c9-b051-7109b59dd736",
+      "firstName": "Jinal",
+      "userName": "INHOUSE_BMS",
+      "lastName": "Ubhatar",
+      "email": "jinal.ubhatar@gmail.com",
+      "phoneNumber": "8511829694",
+      "companyName": "Bacancy System LLP",
+      "createdAt": "2021-10-26T17:26:15.653Z"
+    },
+    {
+      "id": "206f8bc1-80ad-493a-a4dc-2162b4a09710",
+      "firstName": "Jagadeesh",
+      "userName": "Cyberland_Info",
+      "lastName": "Ananthu",
+      "email": "ananthu@solarconnect.co.in",
+      "phoneNumber": "7012233669",
+      "companyName": "Cyberland Infotech",
+      "createdAt": "2021-11-03T10:28:43.463Z"
+    },
+    {
+      "id": "71ba1b4c-2c8d-4d94-b7d6-d2bbce73cdfb",
+      "firstName": "kusalava",
+      "userName": "kusalavaBMS",
+      "lastName": "International",
+      "email": "shubham@kusalava.com",
+      "phoneNumber": "9422196415",
+      "companyName": "kusalava International",
+      "createdAt": "2021-11-17T09:57:21.144Z"
+    },
+    {
+      "id": "f4d04dde-0c09-4c67-b42c-48c570280f56",
+      "firstName": "NEW",
+      "userName": "TEST",
+      "lastName": "NEW1",
+      "email": "abc@gmail.com",
+      "phoneNumber": "1234567890",
+      "companyName": "",
+      "createdAt": "2021-11-16T14:53:49.595Z"
+    },
+    {
+      "id": "827867ba-9781-46f4-b983-274c4cf52212",
+      "firstName": "Harsh",
+      "userName": "BMS_KoshEnergy",
+      "lastName": "Kosh",
+      "email": "harsh@kosh.energy",
+      "phoneNumber": "9109031994",
+      "companyName": "Kosh Energy",
+      "createdAt": "2021-12-21T14:03:45.883Z"
+    },
+    {
+      "id": "a3df68d5-8169-43ef-b98c-300af91ac08b",
+      "firstName": "Umakant",
+      "userName": "BMS_Sanvaru",
+      "lastName": "Tiwari",
+      "email": "umakant@sanvaru.com",
+      "phoneNumber": "8222882923",
+      "companyName": "Sanvaru Technology Ltd",
+      "createdAt": "2021-12-21T14:11:23.960Z"
+    }
+  ]
+}
