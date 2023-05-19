@@ -3,7 +3,8 @@
     <div class="card mat-elevation-z8">
       <div class="card-body">
 
-        <h2 class="card-title">Add Role</h2>
+        <h2 class="card-title" *ngIf="!roleId">Add Role</h2>
+        <h2 class="card-title" *ngIf="roleId">Edit Role</h2>
 
         <form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
 
@@ -12,7 +13,7 @@
               <label class="mb-1">Title</label>
               <input type="text" formControlName="title" class="form-control col-12" required
                 [ngClass]="{'is-invalid':isSubmitted && roleForm.get('title')?.invalid }">
-              <span class="col-12 text-danger" *ngIf="isSubmitted && roleForm.get('deviceId')?.invalid">
+              <span class="col-12 text-danger" *ngIf="isSubmitted && roleForm.get('title')?.invalid">
                 Title is required
               </span>
             </div>
@@ -26,13 +27,13 @@
             </div>
           </div>
 
-          <div class="row my-3" formArrayName="permissions">
-            <div class="col-md-6">
+          <div class="row my-3">
+            <div class="col-md-6" formArrayName="permissions">
               <label class="mb-3">Permissions</label>
 
-              <ng-container *ngFor="let permission of f.controls; let i=index;" [formGroupName]="i">
+              <ng-container *ngFor="let permission of f.controls; let i=index;">
 
-                <div class="row">
+                <div class="row" [formGroupName]="i">
                   <div class="col-3">
                     <h4>{{ permission.get('permission')?.value }}</h4>
                   </div>
@@ -77,7 +78,20 @@
 
               </ng-container>
             </div>
+            <div class="col-md-6">
+              <label class="mb-3">Status</label>
+              <select class="form-control" formControlName="status" required
+                [ngClass]="{'is-invalid':isSubmitted && roleForm.get('status')?.invalid }">
+                <option value="null">Select Status</option>
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+              </select>
+              <span class="col-12 text-danger" *ngIf="isSubmitted && roleForm.get('status')?.invalid">
+                Status is required
+              </span>
+            </div>
           </div>
+
 
 
           <div class="row my-3 text-center">

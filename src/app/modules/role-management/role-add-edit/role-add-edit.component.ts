@@ -13,6 +13,8 @@ export class RoleAddEditComponent {
   roleForm: FormGroup = new FormGroup({});
   isSubmitted: boolean = false
   roleData: any;
+  roleId: number = 0;
+
   // convenience getter for easy access to form fields
   get f() { return this.roleForm.get('permissions') as FormArray }
 
@@ -21,18 +23,69 @@ export class RoleAddEditComponent {
     private router: Router,
     private generalS: GeneralService,
     private activateR: ActivatedRoute
-  ) {
-    this.roleForm = this.fb.group({
-      title: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      permissions: this.fb.array([])
+  ) { }
+
+  ngOnInit(): void {
+    this.createForm();
+    this.activateR.params.subscribe(params => {
+      if (params['id']) {
+        this.roleId = params['id'];
+        this.getRoleById(params['id'])
+      }
     })
   }
 
-  ngOnInit(): void {
-    this.activateR.params.subscribe(params => {
-      // console.log('id => ', params['id'])
-      this.getRoleById(params['id'])
+  createForm() {
+    this.roleForm = this.fb.group({
+      title: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      permissions: this.fb.array([
+        this.fb.group({
+          "roleId": [],
+          "permissionId": [],
+          "add": [],
+          "edit": [],
+          "read": [],
+          "patch": [],
+          "access": [],
+          "remove": [],
+          "permission": ['profile']
+        }),
+        this.fb.group({
+          "roleId": [],
+          "permissionId": [],
+          "add": [],
+          "edit": [],
+          "read": [],
+          "patch": [],
+          "access": [],
+          "remove": [],
+          "permission": ['device']
+        }),
+        this.fb.group({
+          "roleId": [],
+          "permissionId": [],
+          "add": [],
+          "edit": [],
+          "read": [],
+          "patch": [],
+          "access": [],
+          "remove": [],
+          "permission": ['role']
+        }),
+        this.fb.group({
+          "roleId": [],
+          "permissionId": [],
+          "add": [],
+          "edit": [],
+          "read": [],
+          "patch": [],
+          "access": [],
+          "remove": [],
+          "permission": ['user']
+        })
+      ]),
+      status: [null, [Validators.required]]
     })
   }
 
@@ -40,18 +93,10 @@ export class RoleAddEditComponent {
     this.generalS.getRoleById(id).subscribe(res => {
       if (res.statusCode === 200) {
         this.roleData = res.data[0];
-        // this.roleForm.patchValue(this.roleData);
-
-        console.log(this.roleData.permissions)
-
-
-
-
         this.roleForm.patchValue({
           title: this.roleData.title,
           description: this.roleData.description,
-          // permissions: this.fb.array([...x])
-
+          status: this.roleData.status
         })
 
         this.roleData.permissions.forEach((item: any) => {
@@ -66,8 +111,6 @@ export class RoleAddEditComponent {
             "remove": [item.remove],
             "permission": [item.permission]
           })
-          console.log(this.f);
-
 
           this.f.push(x)
 
