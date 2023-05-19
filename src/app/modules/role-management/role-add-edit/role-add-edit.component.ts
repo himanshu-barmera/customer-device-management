@@ -59,11 +59,11 @@ export class RoleAddEditComponent {
             "roleId": [item.roleId],
             "permissionId": [item.permissionId],
             "add": [item.add],
-            "read": [item.read],
             "edit": [item.edit],
-            "remove": [item.remove],
+            "read": [item.read],
             "patch": [item.patch],
             "access": [item.access],
+            "remove": [item.remove],
             "permission": [item.permission]
           })
           console.log(this.f);

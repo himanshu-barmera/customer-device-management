@@ -28,17 +28,54 @@
 
           <div class="row my-3" formArrayName="permissions">
             <div class="col-md-6">
-              <label class="mb-1">Permissions</label>
-              <ng-container *ngFor="let permission of f.controls; let i=index;" [formGroupName]="i">
-                <p>{{ permission.get('roleId')?.value }}</p>
-                <div class="form-check">
-                  <input class="form-check-input" formControlName="read" type="checkbox" value="" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Default checkbox
-                  </label>
-                </div>
-              </ng-container>
+              <label class="mb-3">Permissions</label>
 
+              <ng-container *ngFor="let permission of f.controls; let i=index;" [formGroupName]="i">
+
+                <div class="row">
+                  <div class="col-3">
+                    <h4>{{ permission.get('permission')?.value }}</h4>
+                  </div>
+                  <!-- <div class="col-3"></div> -->
+                  <div class="col-auto">
+
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" formControlName="add" type="checkbox" value=""
+                        id="flexCheckDefault_add_{{i}}">
+                      <label class="form-check-label" for="flexCheckDefault_add_{{i}}">
+                        Add
+                      </label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" formControlName="edit" type="checkbox" value=""
+                        id="flexCheckDefault_edit_{{i}}">
+                      <label class="form-check-label" for="flexCheckDefault_edit_{{i}}">
+                        Edit
+                      </label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" formControlName="read" type="checkbox" value=""
+                        id="flexCheckDefault_read_{{i}}">
+                      <label class="form-check-label" for="flexCheckDefault_read_{{i}}">
+                        Read
+                      </label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" formControlName="remove" type="checkbox" value=""
+                        id="flexCheckDefault_remove{{i}}">
+                      <label class="form-check-label" for="flexCheckDefault_remove{{i}}">
+                        Remove
+                      </label>
+                    </div>
+
+                  </div>
+                  <!-- <div class="col-3"></div> -->
+                </div>
+
+              </ng-container>
             </div>
           </div>
 
