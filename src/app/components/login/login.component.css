@@ -28,3 +28,17 @@ div.content {
   display: table-cell;
   vertical-align: middle;
 }
+
+.text-css {
+  border: 2px solid #00000040;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  margin: 0 auto;
+}
+.logo-text {
+  margin: auto 0;
+  top: 34px;
+  position: relative;
+  font-size: 17px;
+}

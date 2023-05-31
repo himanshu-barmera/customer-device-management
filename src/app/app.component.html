@@ -1,5 +1,6 @@
-<app-header />
-<app-sidebar class="container-fluid float-start" />
-<div class="container-fluid col-12" [ngClass]="{'body-pd':isSidebarVisible}">
+<app-header *ngIf="isLoggedIn" />
+<app-sidebar *ngIf="isLoggedIn" class="container-fluid float-start" />
+<!-- <div class="container-fluid col-12" [ngClass]="{'body-pd':isSidebarVisible}"> -->
+<div class="container-fluid col-12">
   <router-outlet></router-outlet>
 </div>

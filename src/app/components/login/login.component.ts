@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+// import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent {
   isSubmitted: boolean = false;
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    // private authS: AuthService
   ) {
     this.userForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -34,7 +36,13 @@ export class LoginComponent {
     }
 
     if (this.userForm.valid) {
+
+      // this.authS.login(this.userForm.value).subscribe(res => {
       this.router.navigate(['/dashboard']);
+      // })
+
+
+
     }
   }
 
