@@ -1,0 +1,59 @@
+{
+  "error": false,
+  "statusCode": 200,
+  "message": "Users with devices fetched succesfully",
+  "count": 73,
+  "data": [
+    {
+      "id": "7b67b870-255e-43f6-bfa9-2618ccab2c4c",
+      "firstName": "bacancy1",
+      "lastName": "bacancy1",
+      "deviceName": [
+        "abc1"
+      ],
+      "deviceId": "7b67b870-255e-43f6-bfa9"
+    },
+    {
+      "id": "7b67b870-255e-43f6-dhghf-867",
+      "firstName": "bacancy2",
+      "lastName": "bacancy2",
+      "deviceName": [
+        "abc4"
+      ],
+      "deviceId": "2342342-255e-43f6-bfa9"
+    },
+    {
+      "id": "656df5gd6f5g-255e-43f6-bfa9-454",
+      "firstName": "bacancy3",
+      "lastName": "bacancy3",
+      "deviceName": [
+        "abc10",
+        "abc11",
+        "abc12",
+        "abc13"
+      ],
+      "deviceId": "sdgfsdg-255e-34534-ttert"
+    },
+    {
+      "id": "dfgdewrwrr-255e-dgdfgdfg-bfa9-43",
+      "firstName": "bacancy4",
+      "lastName": "bacancy4",
+      "deviceName": [
+        "abc7"
+      ],
+      "deviceId": "7897899-255e-68678-fgdgdf"
+    },
+    {
+      "id": "6576kddfj-255e-43f6-bfa9-7896",
+      "firstName": "bacancy5",
+      "lastName": "bacancy5",
+      "deviceName": [
+        "abc14",
+        "abc15",
+        "abc16",
+        "abc17"
+      ],
+      "deviceId": "sdfsdf-255e-sfsdf-ghjgh"
+    }
+  ]
+}

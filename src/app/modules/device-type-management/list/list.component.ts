@@ -1,30 +1,23 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { GeneralService } from 'src/app/core/general.service';
 
-export interface PeriodicElement {
-  devId: string,
-  deviceName: string,
-  // cellType: number,
-  // numberOfCell: number,
-  // status: number,
+export interface DeviceType {
+  deviceType: string,
   createdAt: string,
-  lastCommissioned: string,
   actions: string
 }
 
 @Component({
-  selector: 'app-device-list',
-  templateUrl: './device-list.component.html',
-  styleUrls: ['./device-list.component.css']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.css']
 })
-export class DeviceListComponent implements AfterViewInit, OnInit {
-
-  displayedColumns: string[] = ['devId', 'deviceName', 'createdAt', 'lastCommissioned', 'actions'];
+export class ListComponent implements OnInit {
+  displayedColumns: string[] = ['deviceType', 'createdAt', 'actions'];
   dataSource: any;
   inputControl = new FormControl('');
 
@@ -34,11 +27,10 @@ export class DeviceListComponent implements AfterViewInit, OnInit {
   constructor(
     private generalS: GeneralService
   ) { }
-
-  ngOnInit(): void {
-    this.generalS.getAllDevice().subscribe(res => {
+  ngOnInit() {
+    this.generalS.getAllDeviceType().subscribe(res => {
       if (res.statusCode === 200) {
-        this.dataSource = new MatTableDataSource<PeriodicElement>(res.data);
+        this.dataSource = new MatTableDataSource<DeviceType>(res.data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.generalS.showSuccess(res.message, 'Success');
@@ -48,8 +40,6 @@ export class DeviceListComponent implements AfterViewInit, OnInit {
     },
     )
   }
-
-  ngAfterViewInit() { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -66,7 +56,8 @@ export class DeviceListComponent implements AfterViewInit, OnInit {
 
   deleteRecord(data: any) {
     console.log(data);
-    this.generalS.showSuccess('Device Deleted Successfully', 'Success');
+    this.generalS.showSuccess('Device Type Deleted Successfully', 'Success');
   }
+
 
 }

@@ -16,6 +16,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgMaterialModule } from './ng-material.module';
 import { SharedModule } from './shared.module';
+import { DropdownDirective } from './core/directive/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { SharedModule } from './shared.module';
     DashboardComponent,
     HeaderComponent,
     SidebarComponent,
-    // DropdownDirective,
+    DropdownDirective,
   ],
   imports: [
     BrowserModule,

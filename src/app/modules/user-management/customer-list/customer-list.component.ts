@@ -12,7 +12,7 @@ export interface PeriodicElement {
   firstName: string,
   lastName: string,
   email: number,
-  // companyName: string,
+  role: string,
   phoneNumber: number,
   userName: string,
   createdAt: string,
@@ -25,8 +25,7 @@ export interface PeriodicElement {
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'phoneNumber', 'userName', 'createdAt', 'actions'];
-  // dataSource: any = new MatTableDataSource<PeriodicElement>(items);
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'role', 'phoneNumber', 'userName', 'createdAt', 'actions'];
   dataSource: any;
   inputControl = new FormControl('');
 
@@ -55,10 +54,7 @@ export class CustomerListComponent implements OnInit, AfterViewInit {
     })
   }
 
-  ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-  }
+  ngAfterViewInit() { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -76,6 +72,12 @@ export class CustomerListComponent implements OnInit, AfterViewInit {
   deleteRecord(data: any) {
     console.log(data);
     this.generalS.showSuccess('User Deleted Successfully', 'Success');
+  }
+
+  setUserId(userId: any) {
+    console.log(userId);
+
+    this.generalS.userID = userId
   }
 
 }

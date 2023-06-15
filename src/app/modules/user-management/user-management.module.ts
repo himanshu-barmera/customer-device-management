@@ -8,12 +8,14 @@ import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from 'src/app/shared.module';
+import { CustomerUserListComponent } from './customer-user-list/customer-user-list.component';
 
 
 @NgModule({
   declarations: [
     CustomerListComponent,
-    UserAddEditComponent
+    UserAddEditComponent,
+    CustomerUserListComponent
   ],
   imports: [
     CommonModule,

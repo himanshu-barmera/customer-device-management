@@ -27,16 +27,14 @@
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
-    <!-- Position Column -->
-    <!-- <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container> -->
-
     <!-- Name Column -->
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> First name </th>
-      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      <td mat-cell *matCellDef="let element">
+        <a routerLink="customer-user-list" (click)="setUserId(element.id)">
+          {{element.firstName}}
+        </a>
+      </td>
     </ng-container>
 
     <!-- Weight Column -->
@@ -51,10 +49,10 @@
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
 
-    <!-- <ng-container matColumnDef="companyName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Company </th>
-      <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
-    </ng-container> -->
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Level </th>
+      <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+    </ng-container>
 
     <ng-container matColumnDef="phoneNumber">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
@@ -74,10 +72,11 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-fab color="warn" aria-label="Edit Row" (click)="editRecord(row)" [routerLink]="['edit',row.id]">
+        <button class="mx-2" mat-fab color="warn" aria-label="Edit Row" (click)="editRecord(row)"
+          [routerLink]="['edit',row.id]">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-fab color="danger" aria-label="Delete Row" (click)="deleteRecord(row)" class="mx-2">
+        <button mat-fab color="danger" aria-label="Delete Row" (click)="deleteRecord(row)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

@@ -1,0 +1,27 @@
+{
+  "error": false,
+  "statusCode": 200,
+  "message": "Device type data fetched successfully",
+  "data": [
+    {
+      "id": "ebe8d46c-8df1-4d34-a8a6-86ff3f80f6ee",
+      "deviceType": "ACT27K4",
+      "createdAt": "2021-12-29T05:47:33.160Z"
+    },
+    {
+      "id": "6a4172a8-c035-4bb4-b15a-6e3814aca956",
+      "deviceType": "ACT27K402",
+      "createdAt": "2021-12-29T05:47:33.160Z"
+    },
+    {
+      "id": "55b206cf-9939-4df7-a2ae-da4dae2a22af",
+      "createdAt": "2021-12-29T05:47:33.160Z",
+      "deviceType": "CCS2 Single gun"
+    },
+    {
+      "id": "c4017596-8e4c-4172-927c-f4dccd878733",
+      "createdAt": "2021-12-29T05:47:33.160Z",
+      "deviceType": "CCS2 Dual gun"
+    }
+  ]
+}

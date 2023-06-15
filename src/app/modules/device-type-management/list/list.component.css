@@ -1,0 +1,9 @@
+.mdc-fab {
+  width: 30px;
+  height: 30px;
+}
+
+.mat-mdc-button-touch-target {
+  width: 35px !important;
+  height: 35px !important;
+}

@@ -12,6 +12,7 @@ const routes: Routes = [
     ).then(m => m.UserManagementModule)
   },
   { path: 'role', loadChildren: () => import('./modules/role-management/role-management.module').then(m => m.RoleManagementModule) },
+  { path: 'device-type', loadChildren: () => import('./modules/device-type-management/device-type-management.module').then(m => m.DeviceTypeManagementModule) },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 ];

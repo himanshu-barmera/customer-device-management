@@ -1,0 +1,89 @@
+<h3>Assigned Devices List</h3>
+
+<form>
+  <div class="row my-3">
+    <div class="col-md-4">
+      <input #input (keyup)="applyFilterForAssignedDevices($event)" placeholder="Search Here"
+        [formControl]="inputControl" class="form-control">
+    </div>
+  </div>
+</form>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> First name </th>
+      <td mat-cell *matCellDef="let element">{{element.firstName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Last name </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deviceName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Device Name </th>
+      <!-- <td mat-cell *matCellDef="let element" ngIf="element.deviceName.length === 1">{{element.deviceName}} </td> -->
+      <td mat-cell *matCellDef="let element">
+
+        <ng-container *ngIf="element.deviceName.length === 1"> {{element.deviceName}} </ng-container>
+        <ng-container *ngIf="element.deviceName.length > 1">
+          <span> {{element.deviceName[0]}},... <a (click)="showDialog(element.deviceName)" href="javascript:void(0)">See
+              More</a> </span>
+        </ng-container>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsAssigned"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsAssigned;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="6" class="text-center py-2">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" #assignedPaginator showFirstLastButtons aria-label="Select page">
+  </mat-paginator>
+</div>
+
+
+
+
+
+<!-- table for unassigned devices -->
+<br>
+<br>
+<br>
+<br>
+<h3>UnAssigned Devices List</h3>
+
+<form>
+  <div class="row my-3">
+    <div class="col-md-4">
+      <input #input1 (keyup)="applyFilterForUnAssignedDevices($event)" placeholder="Search Here"
+        [formControl]="inputControl1" class="form-control">
+    </div>
+  </div>
+</form>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="deviceData" matSort>
+    <ng-container matColumnDef="deviceName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Device Name </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container> {{element.deviceName}} </ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsUnAssigned"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsUnAssigned;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="6" class="text-center py-2">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" #unAssignedPaginator showFirstLastButtons aria-label="Select page">
+  </mat-paginator>
+</div>

@@ -9,6 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class GeneralService {
 
   isSidebarVisible: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  userID: any;
   constructor(
     private toastr: ToastrService,
     private http: HttpClient
@@ -36,6 +37,18 @@ export class GeneralService {
   getRoleById(roleId: number): Observable<any> {
     // return this.http.post('../../assets/data/role-data.json',{roleId});
     return this.http.get('../../assets/data/single-role-data.json');
+  }
+
+  getUserDeviceList(userId: any): Observable<any> {
+    return this.http.get('../../assets/data/user-device-data.json');
+  }
+
+  unAssignedDevices(userId: any): Observable<any> {
+    return this.http.get('../../assets/data/unassigned-device-data.json');
+  }
+
+  getAllDeviceType(): Observable<any> {
+    return this.http.get('../../assets/data/device-type.json');
   }
 
 }

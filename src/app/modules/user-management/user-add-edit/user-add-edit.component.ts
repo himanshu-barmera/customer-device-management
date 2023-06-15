@@ -47,6 +47,7 @@ export class UserAddEditComponent implements OnInit {
       city: ['', [Validators.required]],
       zip: ['', [Validators.required]],
       role: ['', [Validators.required]],
+      customerName: ['', [Validators.required]],
     },
       { validator: ConfirmedValidator('password', 'confirmPassword') }
     )

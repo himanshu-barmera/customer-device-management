@@ -9,7 +9,7 @@
 
           <div class="row my-3">
             <div class="col-md-6">
-              <label class="mb-1">Device ID</label>
+              <label class="mb-1">Device ID <span class="text-danger">*</span></label>
               <input type="text" formControlName="deviceId" class="form-control col-12" required
                 [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('deviceId')?.invalid }">
               <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('deviceId')?.invalid">
@@ -17,7 +17,7 @@
               </span>
             </div>
             <div class="col-md-6">
-              <label class="mb-1">Device Name</label>
+              <label class="mb-1">Device Name <span class="text-danger">*</span></label>
               <input type="text" formControlName="deviceName" class="form-control col-12" required
                 [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('deviceName')?.invalid }">
               <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('deviceName')?.invalid">
@@ -28,7 +28,7 @@
 
           <div class="row my-3">
             <div class="col-md-6">
-              <label class="mb-1">Users</label>
+              <label class="mb-1">Users <span class="text-danger">*</span></label>
               <select class="form-control" formControlName="user" required
                 [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('user')?.invalid }">
                 <option value="">Select User</option>
@@ -51,7 +51,18 @@
                 <mat-error *ngIf="deviceForm.controls['user'].hasError('required')">Please select a User</mat-error>
               </mat-form-field> -->
             </div>
-
+            <div class="col-md-6">
+              <label class="mb-1">Device Type <span class="text-danger">*</span></label>
+              <select class="form-control" formControlName="deviceType" required
+                [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('deviceType')?.invalid }">
+                <option value="">Select Device Type</option>
+                <option value="{{item.deviceType}}" *ngFor="let item of deviceTypeList">
+                  {{item.deviceType}}</option>
+              </select>
+              <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('deviceType')?.invalid">
+                Device Type is required
+              </span>
+            </div>
           </div>
           <div class="row my-3 text-center">
             <div class="col-md-12">

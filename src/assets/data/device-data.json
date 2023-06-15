@@ -8,6 +8,7 @@
       "devId": "4c752541885e",
       "status": 1,
       "createdAt": "2022-01-09T07:04:21.884Z",
+      "lastCommissioned": "2022-01-09T07:04:21.884Z",
       "numberOfCell": 14,
       "cellType": "Li-Ion",
       "deviceName": "SmarTech_14s_885E"
@@ -17,6 +18,7 @@
       "devId": "123456787654",
       "status": 0,
       "createdAt": "2022-12-16T05:29:38.603Z",
+      "lastCommissioned": "2022-12-16T05:29:38.603Z",
       "numberOfCell": null,
       "cellType": null,
       "deviceName": "Test mohit"
@@ -26,6 +28,7 @@
       "devId": "34ab95f9b22e",
       "status": 1,
       "createdAt": "2022-01-07T09:30:55.909Z",
+      "lastCommissioned": "2022-01-07T09:30:55.909Z",
       "numberOfCell": 16,
       "cellType": "Li-Ion",
       "deviceName": "Joy_BMS_2 Sanchit"
@@ -35,6 +38,7 @@
       "devId": "4c752541ac7a",
       "status": 1,
       "createdAt": "2022-01-29T10:22:07.820Z",
+      "lastCommissioned": "2022-01-29T10:22:07.820Z",
       "numberOfCell": 15,
       "cellType": "Li-Ion",
       "deviceName": "Renon_BMS_ESS_AC7A_H"
@@ -44,6 +48,7 @@
       "devId": "34ab95f9b10e",
       "status": 1,
       "createdAt": "2022-01-25T04:47:36.115Z",
+      "lastCommissioned": "2022-01-25T04:47:36.115Z",
       "numberOfCell": 16,
       "cellType": "Li-Ion",
       "deviceName": "Kusalava_B10E"
@@ -53,6 +58,7 @@
       "devId": "4c752540bf5e",
       "status": 0,
       "createdAt": "2021-12-29T05:47:33.160Z",
+      "lastCommissioned": "2021-12-29T05:47:33.160Z",
       "numberOfCell": 16,
       "cellType": "Li Ion",
       "deviceName": "Voltherm_BMS_1"
@@ -62,6 +68,7 @@
       "devId": "1c9dc2d6132a",
       "status": 0,
       "createdAt": "2021-12-29T05:51:10.951Z",
+      "lastCommissioned": "2021-12-29T05:51:10.951Z",
       "numberOfCell": 16,
       "cellType": "Li Ion",
       "deviceName": "Shomi_Libatt_BMS_1"

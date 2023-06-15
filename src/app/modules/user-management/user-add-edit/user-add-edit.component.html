@@ -9,7 +9,7 @@
 
           <div class="row my-3">
             <div class="col-md-4">
-              <label class="mb-1">First Name</label>
+              <label class="mb-1">First Name <span class="text-danger">*</span></label>
               <input type="text" formControlName="firstName" class="form-control col-12" required
                 [ngClass]="{'is-invalid':isSubmitted && userForm.get('firstName')?.invalid }">
               <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('firstName')?.invalid">
@@ -17,7 +17,7 @@
               </span>
             </div>
             <div class="col-md-4">
-              <label class="mb-1">Last Name</label>
+              <label class="mb-1">Last Name <span class="text-danger">*</span></label>
               <input type="text" formControlName="lastName" class="form-control col-12" required
                 [ngClass]="{'is-invalid':isSubmitted && userForm.get('lastName')?.invalid }">
               <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('lastName')?.invalid">
@@ -29,7 +29,7 @@
               <input type="text" formControlName="email" class="form-control" email
                 [ngClass]="{'is-invalid':isSubmitted && userForm.get('email')?.invalid }">
               <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.controls['email'].errors">
-                <ng-container *ngIf="userForm.controls['email'].errors['required']">Email is required</ng-container>
+                <!-- <ng-container *ngIf="userForm.controls['email'].errors['required']">Email is required</ng-container> -->
                 <ng-container *ngIf="userForm.controls['email'].errors['email']">
                   Email must be a valid email address
                 </ng-container>
@@ -39,7 +39,7 @@
 
           <div class="row my-3">
             <div class="col-md-4">
-              <label class="mb-1">Phone</label>
+              <label class="mb-1">Phone <span class="text-danger">*</span></label>
               <input type="number" formControlName="phone" class="form-control" required
                 [ngClass]="{'is-invalid':isSubmitted && userForm.get('phone')?.invalid }">
               <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('phone')?.invalid">
@@ -48,25 +48,27 @@
             </div>
             <div class="col-md-4">
               <label class="mb-1">Company</label>
-              <input type="text" formControlName="company" class="form-control" required
-                [ngClass]="{'is-invalid':isSubmitted && userForm.get('company')?.invalid }">
-              <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('company')?.invalid">
+              <input type="text" formControlName="company" class="form-control">
+              <!-- required
+                [ngClass]="{'is-invalid':isSubmitted && userForm.get('company')?.invalid }" -->
+              <!-- <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('company')?.invalid">
                 Company is required
-              </span>
+              </span> -->
             </div>
             <div class="col-md-4">
               <label class="mb-1">User Name</label>
-              <input type="text" formControlName="userName" class="form-control" required
-                [ngClass]="{'is-invalid':isSubmitted && userForm.get('userName')?.invalid }">
-              <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('userName')?.invalid">
+              <input type="text" formControlName="userName" class="form-control">
+              <!-- required
+                [ngClass]="{'is-invalid':isSubmitted && userForm.get('userName')?.invalid }" -->
+              <!-- <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('userName')?.invalid">
                 User Name is required
-              </span>
+              </span> -->
             </div>
           </div>
 
           <div class="row my-3">
             <div class="col-md-4">
-              <label class="mb-1">Password</label>
+              <label class="mb-1">Password <span class="text-danger">*</span></label>
               <input type="password" formControlName="password" class="form-control" required
                 [ngClass]="{'is-invalid':isSubmitted && userForm.get('password')?.invalid }">
               <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('password')?.invalid">
@@ -74,7 +76,7 @@
               </span>
             </div>
             <div class="col-md-4">
-              <label class="mb-1">Confirm Password</label>
+              <label class="mb-1">Confirm Password <span class="text-danger">*</span></label>
               <input type="password" formControlName="confirmPassword" class="form-control" required
                 [ngClass]="{'is-invalid':isSubmitted && userForm.get('confirmPassword')?.invalid }">
               <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.controls['confirmPassword'].errors">
@@ -86,7 +88,7 @@
               </span>
             </div>
             <div class="col-md-4">
-              <label class="mb-1">Role</label>
+              <label class="mb-1">Role <span class="text-danger">*</span></label>
               <select class="form-control" formControlName="role" required
                 [ngClass]="{'is-invalid':isSubmitted && userForm.get('role')?.invalid }">
                 <option value="">Select Role</option>
@@ -103,28 +105,52 @@
           <div class="row my-3">
             <div class="col-md-4">
               <label class="mb-1">State</label>
-              <input type="text" formControlName="state" class="form-control" required
-                [ngClass]="{'is-invalid':isSubmitted && userForm.get('state')?.invalid }">
-              <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('state')?.invalid">
+              <input type="text" formControlName="state" class="form-control">
+              <!-- required
+                [ngClass]="{'is-invalid':isSubmitted && userForm.get('state')?.invalid }" -->
+              <!-- <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('state')?.invalid">
                 State is required
-              </span>
+              </span> -->
             </div>
             <div class="col-md-4">
               <label class="mb-1">City</label>
-              <input type="text" formControlName="city" class="form-control" required
-                [ngClass]="{'is-invalid':isSubmitted && userForm.get('city')?.invalid }">
-              <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('city')?.invalid">
+              <input type="text" formControlName="city" class="form-control">
+              <!-- required
+                [ngClass]="{'is-invalid':isSubmitted && userForm.get('city')?.invalid }" -->
+              <!-- <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('city')?.invalid">
                 City is required
-              </span>
+              </span> -->
             </div>
             <div class="col-md-4">
               <label class="mb-1">Zip</label>
-              <input type="text" formControlName="zip" class="form-control" required
-                [ngClass]="{'is-invalid':isSubmitted && userForm.get('zip')?.invalid }">
-              <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('zip')?.invalid">
+              <input type="text" formControlName="zip" class="form-control">
+              <!-- required
+                [ngClass]="{'is-invalid':isSubmitted && userForm.get('zip')?.invalid }" -->
+              <!-- <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('zip')?.invalid">
                 Zip is required
+              </span> -->
+            </div>
+          </div>
+
+
+          <div class="row my-3">
+            <div class="col-md-4">
+              <label class="mb-1">Customer <span class="text-danger">*</span></label>
+              <select class="form-control" formControlName="customerName" required
+                [ngClass]="{'is-invalid':isSubmitted && userForm.get('customerName')?.invalid }">
+                <option value="">Select Customer</option>
+                <option value="1">Customer 1</option>
+                <option value="2">Customer 2</option>
+                <option value="3">Customer 3</option>
+                <option value="4">Customer 4</option>
+                <option value="5">Customer 5</option>
+                <option value="6">Customer 6</option>
+              </select>
+              <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('customerName')?.invalid">
+                Customer Name is required
               </span>
             </div>
+
           </div>
 
           <div class="row my-3 text-center">

@@ -12,15 +12,14 @@ export class DeviceAddEditComponent {
   deviceForm: FormGroup = new FormGroup({});
   isSubmitted: boolean = false;
   userList: any = [];
+  deviceTypeList: any = [];
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private generalS: GeneralService,
     private activateR: ActivatedRoute
-  ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
     this.activateR.params.subscribe(params => {
@@ -34,6 +33,12 @@ export class DeviceAddEditComponent {
         this.userList = res.data;
       }
     })
+
+    this.generalS.getAllDeviceType().subscribe(res => {
+      if (res.statusCode === 200) {
+        this.deviceTypeList = res.data;
+      }
+    })
   }
 
   createDeviceForm() {
@@ -41,6 +46,7 @@ export class DeviceAddEditComponent {
       deviceId: ['', [Validators.required]],
       deviceName: ['', [Validators.required]],
       user: ['', [Validators.required]],
+      deviceType: ['', [Validators.required]]
     })
   }
 

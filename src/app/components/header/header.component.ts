@@ -1,4 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
+import { Event, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { GeneralService } from 'src/app/core/general.service';
 
 @Component({
@@ -12,10 +13,28 @@ export class HeaderComponent implements AfterViewInit {
   dropdownOpen: boolean = false;
 
   constructor(
-    private generalS: GeneralService
-  ) { }
+    private generalS: GeneralService,
+    private router: Router
+  ) {
+
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        // this.showHideMenu();
+        this.dropdownOpen = false;
+      }
+
+      if (event instanceof NavigationEnd) {
+        // this.showHideMenu();
+        this.dropdownOpen = false;
+      }
+    })
+  }
 
   ngAfterViewInit(): void { }
+
+  clickedOutside(): void {
+    this.dropdownOpen = false;
+  }
 
   toggleSidebar(str: any) {
 
@@ -28,5 +47,9 @@ export class HeaderComponent implements AfterViewInit {
     });
 
 
+  }
+
+  showHideMenu() {
+    this.dropdownOpen = !this.dropdownOpen;
   }
 }
