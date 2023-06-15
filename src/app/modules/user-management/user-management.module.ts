@@ -20,8 +20,6 @@ import { CustomerUserListComponent } from './customer-user-list/customer-user-li
   imports: [
     CommonModule,
     UserManagementRoutingModule,
-    ReactiveFormsModule,
-    NgMaterialModule,
     SharedModule
   ]
 })

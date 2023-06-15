@@ -18,7 +18,7 @@ export class GeneralService {
   showSuccess(message: string, title?: string) {
     this.toastr.success(message, title);
   }
-  showError(message: string, title: string) {
+  showError(message: string, title?: string) {
     this.toastr.error(message, title);
   }
 

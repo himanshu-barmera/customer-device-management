@@ -13,7 +13,6 @@ import { NgMaterialModule } from './ng-material.module';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     NgMaterialModule,
     FormsModule,
     RouterModule,
@@ -27,7 +26,6 @@ import { NgMaterialModule } from './ng-material.module';
     FormsModule,
     RouterModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     NgMaterialModule,
   ]
 })

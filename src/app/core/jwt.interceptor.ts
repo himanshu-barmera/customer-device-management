@@ -18,11 +18,12 @@ export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     let user = this.authS.userValue;
-    let isLoggedIn = user && user.token;
+    // console.log(user)
+    let isLoggedIn = user && user.accessToken;
     if (isLoggedIn) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${user?.token}`
+          Authorization: `Bearer ${user?.accessToken}`
         }
       })
     }

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, Observable, map } from "rxjs";
 import { environment } from "src/environments/environment";
+import { GeneralService } from "./general.service";
 
 export interface User {
   // id?: number;
@@ -10,7 +11,8 @@ export interface User {
   password: string;
   firstName?: string;
   lastName?: string;
-  token?: string
+  accessToken?: string
+  refreshToken?: string
 }
 
 @Injectable({
@@ -23,7 +25,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private generalS: GeneralService
   ) {
     this.isUserLoggedIn = new BehaviorSubject<boolean>(false);
     this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('e-c-user') || 'null') || null);
@@ -36,13 +39,11 @@ export class AuthService {
 
   login(userName: any, password: any) {
     return this.http.post(`${environment.baseURL}/users/login`, { userName, password }).pipe(map((user: any) => {
-      console.log('user in auth service')
-      console.log(user)
-      if (user && user.token) {
-        localStorage.setItem('e-c-user', JSON.stringify(user));
-        this.userSubject.next(user);
+      if (user && user.data.accessToken) {
+        localStorage.setItem('e-c-user', JSON.stringify(user.data));
+        this.userSubject.next(user.data);
         this.isUserLoggedIn.next(true);
-        return user;
+        return user.data;
       }
     }
     ))
@@ -50,9 +51,19 @@ export class AuthService {
 
   logout() {
     // remove user from local storage and set current user to null
-    localStorage.removeItem('e-c-user');
-    this.userSubject.next(null);
-    this.router.navigate(['/login']);
+    this.http.get(`${environment.baseURL}/users/logout`, {}).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.isUserLoggedIn.next(false);
+        localStorage.clear();
+        this.generalS.showSuccess("Logged Out Successfully!");
+        this.userSubject.next(null);
+        this.router.navigate(['/login']);
+        return res;
+      },
+      error: (err: any) => {
+        this.generalS.showError("Logged Out Error : " + err.message);
+      }
+    })
   }
-
 }

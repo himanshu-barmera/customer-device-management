@@ -10,6 +10,7 @@ import { DropdownDirective } from './core/directive/dropdown.directive';
 import { JwtInterceptor } from './core/jwt.interceptor';
 import { ErrorInterceptor } from './core/error.interceptor';
 import { LayoutModule } from './modules/layout.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { LayoutModule } from './modules/layout.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
     LayoutModule

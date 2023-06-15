@@ -1,5 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { Event, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { AuthService } from 'src/app/core/auth.service';
 import { GeneralService } from 'src/app/core/general.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class HeaderComponent implements AfterViewInit {
 
   constructor(
     private generalS: GeneralService,
-    private router: Router
+    private router: Router,
+    private authS: AuthService
   ) {
 
     this.router.events.subscribe((event: Event) => {
@@ -50,5 +52,9 @@ export class HeaderComponent implements AfterViewInit {
 
   showHideMenu() {
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  logout() {
+    this.authS.logout();
   }
 }

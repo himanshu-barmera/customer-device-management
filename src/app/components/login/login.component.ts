@@ -38,9 +38,6 @@ export class LoginComponent {
 
     if (this.userForm.valid) {
 
-      // console.log('this.userForm.value')
-      // console.log(this.userForm.value)
-
       this.loading = true;
       this.authS.login(this.userForm.value.username, this.userForm.value.password).pipe(first()).subscribe({
         next: (res) => {

@@ -10,28 +10,31 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       {
         path: 'device',
         loadChildren: () => import('./modules/device-management/device-management.module').then(m => m.DeviceManagementModule),
-        canLoad: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: 'user',
         loadChildren: () => import('./modules/user-management/user-management.module').then(m => m.UserManagementModule),
-        canLoad: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: 'role',
         loadChildren: () => import('./modules/role-management/role-management.module').then(m => m.RoleManagementModule),
-        canLoad: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: 'device-type',
         loadChildren: () => import('./modules/device-type-management/device-type-management.module').then(m => m.DeviceTypeManagementModule),
-        canLoad: [AuthGuard]
+        canActivate: [AuthGuard]
       },
+      // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
   ,
