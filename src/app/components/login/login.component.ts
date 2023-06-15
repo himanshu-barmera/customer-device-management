@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-// import { AuthService } from 'src/app/core/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,13 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   userForm: FormGroup;
+  loading = false;
   isSubmitted: boolean = false;
   constructor(
     private fb: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router,
-    // private authS: AuthService
+    private authS: AuthService
   ) {
     this.userForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -23,9 +26,7 @@ export class LoginComponent {
     })
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   onSubmit() {
     this.isSubmitted = true;
@@ -37,12 +38,21 @@ export class LoginComponent {
 
     if (this.userForm.valid) {
 
-      // this.authS.login(this.userForm.value).subscribe(res => {
-      this.router.navigate(['/dashboard']);
-      // })
+      // console.log('this.userForm.value')
+      // console.log(this.userForm.value)
 
-
-
+      this.loading = true;
+      this.authS.login(this.userForm.value.username, this.userForm.value.password).pipe(first()).subscribe({
+        next: (res) => {
+          // get return url from query parameters or default to home page
+          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          this.router.navigateByUrl(returnUrl);
+        },
+        error: (err) => {
+          // this.alertService.error(error);
+          this.loading = false;
+        }
+      })
     }
   }
 

@@ -31,7 +31,8 @@
                 Remember Me
               </label>
             </div>
-            <button class="btn btn-primary text-center mt-2" type="submit">
+            <button [disabled]="loading" class="btn btn-primary text-center mt-2" type="submit">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
               Login
             </button>
           </div>
