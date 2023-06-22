@@ -1,12 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { ConfirmDialogModel, DialogCompComponent } from 'src/app/components/dialog-comp/dialog-comp.component';
 import { GeneralService } from 'src/app/core/general.service';
 
 export interface DeviceType {
-  deviceType: string,
+  hardwareType: string,
   createdAt: string,
   actions: string
 }
@@ -17,28 +20,40 @@ export interface DeviceType {
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ['deviceType', 'createdAt', 'actions'];
+  displayedColumns: string[] = ['hardwareType', 'createdAt', 'actions'];
   dataSource: any;
   inputControl = new FormControl('');
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  resp: any;
+
   constructor(
-    private generalS: GeneralService
+    private generalS: GeneralService,
+    private router: Router,
+    public dialog: MatDialog
   ) { }
   ngOnInit() {
-    this.generalS.getAllDeviceType().subscribe(res => {
-      if (res.statusCode === 200) {
-        this.dataSource = new MatTableDataSource<DeviceType>(res.data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        this.generalS.showSuccess(res.message, 'Success');
+    this.getAllDeviceType();
+  }
+
+  getAllDeviceType() {
+    this.generalS.getAllDeviceType().subscribe({
+      next: res => {
+        if (!res.error) {
+          this.dataSource = new MatTableDataSource<DeviceType>(res.data);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          this.generalS.showSuccess(res.message, 'Success');
+        }
+        else
+          this.generalS.showError(res.message, 'Error');
+      },
+      error: err => {
+        this.generalS.showError(err, 'Error');
       }
-      else
-        this.generalS.showError(res.message, 'Error');
-    },
-    )
+    })
   }
 
   applyFilter(event: Event) {
@@ -52,11 +67,44 @@ export class ListComponent implements OnInit {
 
   editRecord(data: any) {
     console.log(data);
+    this.generalS.deviceTypeId = data.id;
+    this.router.navigate(['/device-type/edit']);
   }
 
   deleteRecord(data: any) {
     console.log(data);
-    this.generalS.showSuccess('Device Type Deleted Successfully', 'Success');
+    // this.generalS.showSuccess('Device Type Deleted Successfully', 'Success');
+
+    const message = `Are you sure you want to delete this?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(DialogCompComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      this.resp = dialogResult;
+      if (this.resp) {
+        // this.generalS.showSuccess('Device Type Deleted Successfully', 'Success');
+        this.generalS.deleteDeviceType(data.id).subscribe(
+          {
+            next: res => {
+              if (!res.error) {
+                this.generalS.showSuccess(res.message, 'Success');
+                this.getAllDeviceType();
+              } else {
+                this.generalS.showError(res.message, 'Error');
+              }
+            },
+            error: err => {
+              this.generalS.showError(err.message, 'Error');
+            }
+          })
+      }
+    });
+
   }
 
 

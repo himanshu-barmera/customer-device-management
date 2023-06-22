@@ -117,11 +117,11 @@ export class CustomerUserListComponent implements OnInit {
 
     this.dialog.open(DialogCompComponent, dialogConfig);
 
-    // const dialogRef = this.dialog.open(DialogCompComponent, dialogConfig);
+    const dialogRef = this.dialog.open(DialogCompComponent, dialogConfig);
 
-    // dialogRef.afterClosed().subscribe(
-    //   data => console.log("Dialog output:", data)
-    // );
+    dialogRef.afterClosed().subscribe(
+      data => console.log("Dialog output:", data)
+    );
   }
 
 

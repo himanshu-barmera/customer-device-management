@@ -6,13 +6,13 @@ import { environment } from "src/environments/environment";
 import { GeneralService } from "./general.service";
 
 export interface User {
-  // id?: number;
   email: string;
   password: string;
   firstName?: string;
   lastName?: string;
   accessToken?: string
   refreshToken?: string
+  roleId?: string
 }
 
 @Injectable({
@@ -43,6 +43,7 @@ export class AuthService {
         localStorage.setItem('e-c-user', JSON.stringify(user.data));
         this.userSubject.next(user.data);
         this.isUserLoggedIn.next(true);
+        this.getMyProfile();
         return user.data;
       }
     }
@@ -66,4 +67,17 @@ export class AuthService {
       }
     })
   }
+
+  getMyProfile() {
+    this.http.get(`${environment.baseURL}/users/me`).subscribe((res: any) => {
+      if (!res.error && res.statusCode === 200) {
+        let tmpData = JSON.parse(localStorage.getItem('e-c-user') || 'null');
+        tmpData.roleId = res.data.roleId;
+        tmpData.role = res.data.role;
+        localStorage.setItem('e-c-user', JSON.stringify(tmpData));
+      }
+    })
+  }
+
+
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class GeneralService {
 
   isSidebarVisible: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
   userID: any;
+  deviceId: any;
+  deviceTypeId: any;
+  roleId: any;
+
   constructor(
     private toastr: ToastrService,
     private http: HttpClient
@@ -24,7 +30,13 @@ export class GeneralService {
 
   getAllUser(): Observable<any> {
     return this.http.get('../../assets/data/user-data.json');
+    // return this.http.get(`${environment.baseURL}/`);
   }
+
+  addNewUser(userData: any): Observable<any> {
+    return this.http.post(`${environment.baseURL}/users`, userData);
+  }
+
 
   getAllRole(): Observable<any> {
     return this.http.get('../../assets/data/role-data.json');
@@ -48,7 +60,23 @@ export class GeneralService {
   }
 
   getAllDeviceType(): Observable<any> {
-    return this.http.get('../../assets/data/device-type.json');
+    return this.http.get(`${environment.baseURL}/sys/hw_type`);
   }
+
+  addDeviceType(deviceTypeData: any): Observable<any> {
+    return this.http.post(`${environment.baseURL}/sys/hw_type`, deviceTypeData);
+  }
+
+  getDeviceTypeById(deviceTypeId: string): Observable<any> {
+    return this.http.get(`${environment.baseURL}/sys/hw_type/${deviceTypeId}`);
+  }
+
+  deleteDeviceType(deviceTypeId: string): Observable<any> {
+    return this.http.delete(`${environment.baseURL}/sys/hw_type/${deviceTypeId}`);
+  }
+
+
+
+
 
 }

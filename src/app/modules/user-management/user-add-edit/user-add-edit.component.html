@@ -40,15 +40,15 @@
           <div class="row my-3">
             <div class="col-md-4">
               <label class="mb-1">Phone <span class="text-danger">*</span></label>
-              <input type="number" formControlName="phone" class="form-control" required
-                [ngClass]="{'is-invalid':isSubmitted && userForm.get('phone')?.invalid }">
-              <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('phone')?.invalid">
+              <input type="number" formControlName="phoneNumber" class="form-control" required
+                [ngClass]="{'is-invalid':isSubmitted && userForm.get('phoneNumber')?.invalid }">
+              <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('phoneNumber')?.invalid">
                 Phone Number is required
               </span>
             </div>
             <div class="col-md-4">
               <label class="mb-1">Company</label>
-              <input type="text" formControlName="company" class="form-control">
+              <input type="text" formControlName="companyName" class="form-control">
               <!-- required
                 [ngClass]="{'is-invalid':isSubmitted && userForm.get('company')?.invalid }" -->
               <!-- <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('company')?.invalid">
@@ -73,6 +73,11 @@
                 [ngClass]="{'is-invalid':isSubmitted && userForm.get('password')?.invalid }">
               <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('password')?.invalid">
                 Password is required
+              </span>
+              <span
+                *ngIf="userForm.get('password')?.hasError('minlength') && !userForm.get('password')?.hasError('required')"
+                class="col-12 text-danger">
+                Password should contain 8 characters
               </span>
             </div>
             <div class="col-md-4">
@@ -155,7 +160,10 @@
 
           <div class="row my-3 text-center">
             <div class="col-md-12">
-              <button type="submit" class="btn btn-outline-primary">Submit</button>
+              <button [disabled]="loading" type="submit" class="btn btn-outline-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                Submit
+              </button>
               <button type="button" class="btn btn-outline-danger mx-3" routerLink="/user">Cancel</button>
             </div>
           </div>

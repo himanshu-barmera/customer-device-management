@@ -11,6 +11,7 @@ import { GeneralService } from 'src/app/core/general.service';
 export class AddEditComponent implements OnInit {
   deviceForm: FormGroup = new FormGroup({});
   isSubmitted: boolean = false;
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -24,12 +25,25 @@ export class AddEditComponent implements OnInit {
     //   console.log('id => ', params['id'])
     // })
 
+    this.getDeviceType(this.generalS.deviceTypeId);
+
     this.createDeviceTypeForm();
   }
 
+  getDeviceType(deviceTypeId: string) {
+    if (deviceTypeId) {
+      // this.generalS.getDeviceTypeById(deviceTypeId).subscribe(res => {
+      //   console.log('res => ')
+      //   console.log(res)
+      //   // this.deviceForm.patchValue(res)
+      // })
+    }
+  }
+
+
   createDeviceTypeForm() {
     this.deviceForm = this.fb.group({
-      deviceType: ['', [Validators.required]]
+      hardwareType: ['', [Validators.required]]
     })
   }
 
@@ -44,8 +58,24 @@ export class AddEditComponent implements OnInit {
 
     if (this.deviceForm.valid) {
       console.log(this.deviceForm.value);
-      this.generalS.showSuccess('Device Type Added Successfully', 'Success');
-      this.router.navigate(['/device-type']);
+      this.loading = true;
+      this.generalS.addDeviceType(this.deviceForm.value).subscribe({
+
+        next: (res) => {
+          if (!res.error) {
+            this.generalS.showSuccess(res.message, 'Success');
+            this.loading = false;
+            this.router.navigate(['/device-type']);
+          } else {
+            this.generalS.showError(res.message, 'Error');
+            this.loading = false;
+          }
+        },
+        error: (err) => {
+          this.generalS.showError(err, "Logged In Error");
+          this.loading = false;
+        }
+      })
     }
   }
 

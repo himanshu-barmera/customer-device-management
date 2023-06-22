@@ -41,7 +41,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatSortModule,
     MatSelectModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    MatDialogModule
   ]
 })
 export class NgMaterialModule { }

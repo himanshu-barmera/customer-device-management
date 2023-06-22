@@ -13,7 +13,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
+      },
       {
         path: 'device',
         loadChildren: () => import('./modules/device-management/device-management.module').then(m => m.DeviceManagementModule),

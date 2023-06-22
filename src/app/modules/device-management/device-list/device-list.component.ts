@@ -9,9 +9,7 @@ import { GeneralService } from 'src/app/core/general.service';
 export interface PeriodicElement {
   devId: string,
   deviceName: string,
-  // cellType: number,
-  // numberOfCell: number,
-  // status: number,
+  deviceType: string,
   createdAt: string,
   lastCommissioned: string,
   actions: string
@@ -24,7 +22,7 @@ export interface PeriodicElement {
 })
 export class DeviceListComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['devId', 'deviceName', 'createdAt', 'lastCommissioned', 'actions'];
+  displayedColumns: string[] = ['devId', 'deviceName', 'deviceType', 'createdAt', 'lastCommissioned', 'actions'];
   dataSource: any;
   inputControl = new FormControl('');
 
