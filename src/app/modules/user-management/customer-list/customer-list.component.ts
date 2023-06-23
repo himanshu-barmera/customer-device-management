@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { FormControl } from '@angular/forms';
 import { GeneralService } from 'src/app/core/general.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogModel, DialogCompComponent } from 'src/app/components/dialog-comp/dialog-comp.component';
 
 export interface PeriodicElement {
   // id: number,
@@ -32,8 +34,11 @@ export class CustomerListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  resp: any
+
   constructor(
-    private generalS: GeneralService
+    private generalS: GeneralService,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -76,7 +81,37 @@ export class CustomerListComponent implements OnInit, AfterViewInit {
 
   deleteRecord(data: any) {
     console.log(data);
-    this.generalS.showSuccess('User Deleted Successfully', 'Success');
+    // this.generalS.showSuccess('User Deleted Successfully', 'Success');
+
+    const message = `Are you sure you want to delete this?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(DialogCompComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+      this.resp = dialogResult;
+      if (this.resp) {
+        // this.generalS.deleteRole(data.id).subscribe(
+        //   {
+        //     next: res => {
+        //       if (!res.error) {
+        //         this.generalS.showSuccess(res.message, 'Success');
+        //         this.getAllRoles();
+        //       } else {
+        //         this.generalS.showError(res.message, 'Error');
+        //       }
+        //     },
+        //     error: err => {
+        //       this.generalS.showError(err.message, 'Error');
+        //     }
+        //   })
+      }
+    });
+
   }
 
   setUserId(userId: any) {
