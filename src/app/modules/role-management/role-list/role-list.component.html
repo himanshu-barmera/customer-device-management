@@ -57,8 +57,7 @@
         <button mat-fab color="secondary" aria-label="Edit Row">
           <mat-icon>view_list</mat-icon>
         </button>
-        <button mat-fab color="warn" aria-label="Edit Row" (click)="editRecord(row)" class="mx-2"
-          [routerLink]="['edit',row.id]">
+        <button mat-fab color="warn" aria-label="Edit Row" (click)="editRecord(row)" class="mx-2">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-fab color="danger" aria-label="Delete Row" (click)="deleteRecord(row)">

@@ -39,8 +39,10 @@ export class GeneralService {
 
 
   getAllRole(): Observable<any> {
-    return this.http.get('../../assets/data/role-data.json');
+    // return this.http.get('../../assets/data/role-data.json');
+    return this.http.get(`${environment.baseURL}/sys/manage/roles`);
   }
+
 
   getAllDevice(): Observable<any> {
     return this.http.get('../../assets/data/device-data.json');

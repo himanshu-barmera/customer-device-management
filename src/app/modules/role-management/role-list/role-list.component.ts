@@ -5,6 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { FormControl } from '@angular/forms';
 import { GeneralService } from 'src/app/core/general.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogModel, DialogCompComponent } from 'src/app/components/dialog-comp/dialog-comp.component';
+import { Router } from '@angular/router';
 
 
 export interface PeriodicElement {
@@ -20,7 +23,7 @@ export interface PeriodicElement {
   templateUrl: './role-list.component.html',
   styleUrls: ['./role-list.component.css']
 })
-export class RoleListComponent {
+export class RoleListComponent implements OnInit {
   displayedColumns: string[] = ['title', 'status', 'createdAt', 'updatedAt', 'actions'];
   dataSource: any;
   inputControl = new FormControl('');
@@ -28,25 +31,36 @@ export class RoleListComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  resp: any;
+
   constructor(
-    private generalS: GeneralService
+    private generalS: GeneralService,
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.generalS.getAllRole().subscribe(res => {
-      if (res.statusCode === 200) {
-        this.dataSource = new MatTableDataSource<PeriodicElement>(res.data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        this.generalS.showSuccess(res.message, 'Success');
-      }
-      else
-        this.generalS.showError(res.message, 'Error');
-    },
-    )
+    this.getAllRoles();
   }
 
-  ngAfterViewInit() { }
+  getAllRoles() {
+    this.generalS.getAllRole().subscribe({
+      next: res => {
+        if (!res.error) {
+          this.dataSource = new MatTableDataSource<PeriodicElement>(res.data);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          this.generalS.showSuccess(res.message, 'Success');
+        }
+        else
+          this.generalS.showError(res.message, 'Error');
+      },
+      error: err => {
+        this.generalS.showError(err.message, 'Error');
+      }
+    }
+    )
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -59,10 +73,40 @@ export class RoleListComponent {
 
   editRecord(data: any) {
     console.log(data);
+    this.generalS.roleId = data.id;
+    this.router.navigate(['/role/edit']);
   }
 
   deleteRecord(data: any) {
-    console.log(data);
-    this.generalS.showSuccess('Role Deleted Successfully', 'Success');
+
+    const message = `Are you sure you want to delete this?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(DialogCompComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+      this.resp = dialogResult;
+      if (this.resp) {
+        // this.generalS.deleteRole(data.id).subscribe(
+        //   {
+        //     next: res => {
+        //       if (!res.error) {
+        //         this.generalS.showSuccess(res.message, 'Success');
+        //         this.getAllRoles();
+        //       } else {
+        //         this.generalS.showError(res.message, 'Error');
+        //       }
+        //     },
+        //     error: err => {
+        //       this.generalS.showError(err.message, 'Error');
+        //     }
+        //   })
+      }
+    });
+
   }
 }

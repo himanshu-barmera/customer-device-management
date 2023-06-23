@@ -27,17 +27,9 @@ export class RoleAddEditComponent {
 
   ngOnInit(): void {
 
-    this.activateR.params.subscribe(params => {
-      if (params['id']) {
-        this.roleId = params['id'];
-        this.getRoleById(params['id'])
-      } else {
-        this.roleForm = this.initializeRoleForm()
-      }
-    })
+    console.log(this.generalS.roleId)
+
   }
-
-
 
   getRoleById(id: any) {
     this.generalS.getRoleById(id).subscribe(res => {
@@ -77,29 +69,29 @@ export class RoleAddEditComponent {
       },
       {
         "add": false,
-        "read": true,
+        "read": false,
         "edit": false,
         "remove": false,
         "patch": false,
-        "access": true,
+        "access": false,
         "permission": "device"
       },
       {
         "add": false,
         "read": false,
-        "edit": true,
+        "edit": false,
         "remove": false,
         "patch": false,
         "access": false,
         "permission": "role"
       },
       {
-        "add": true,
-        "read": true,
-        "edit": true,
-        "remove": true,
+        "add": false,
+        "read": false,
+        "edit": false,
+        "remove": false,
         "patch": false,
-        "access": true,
+        "access": false,
         "permission": "user"
       }
     ]

@@ -6,7 +6,8 @@ import { RoleAddEditComponent } from './role-add-edit/role-add-edit.component';
 const routes: Routes = [
   { path: '', component: RoleListComponent },
   { path: 'add', component: RoleAddEditComponent },
-  { path: 'edit/:id', component: RoleAddEditComponent },
+  // { path: 'edit/:id', component: RoleAddEditComponent },
+  { path: 'edit', component: RoleAddEditComponent },
   { path: 'list', component: RoleListComponent },
 ];
 

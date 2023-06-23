@@ -72,8 +72,6 @@ export class ListComponent implements OnInit {
   }
 
   deleteRecord(data: any) {
-    console.log(data);
-    // this.generalS.showSuccess('Device Type Deleted Successfully', 'Success');
 
     const message = `Are you sure you want to delete this?`;
 
