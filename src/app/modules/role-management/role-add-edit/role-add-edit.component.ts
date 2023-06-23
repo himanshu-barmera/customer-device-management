@@ -14,6 +14,7 @@ export class RoleAddEditComponent {
   isSubmitted: boolean = false
   roleData: any;
   roleId: number = 0;
+  loading = false;
 
   // convenience getter for easy access to form fields
   get f() { return this.roleForm.get('permissions') as FormArray }
@@ -29,15 +30,30 @@ export class RoleAddEditComponent {
 
     console.log(this.generalS.roleId)
 
+    this.getRoleById(this.generalS.roleId ? this.generalS.roleId : '')
+
   }
 
   getRoleById(id: any) {
-    this.generalS.getRoleById(id).subscribe(res => {
-      if (res.statusCode === 200) {
-        this.roleData = res.data[0];
-        this.roleForm = this.initializeRoleForm(res.data[0]);
-      }
-    })
+    if (id) {
+      this.generalS.getRoleById(id).subscribe({
+        next: res => {
+          console.log(res)
+          if (!res.error) {
+            this.roleData = res.data[0];
+            this.roleForm = this.initializeRoleForm(res.data[0]);
+          } else {
+            this.generalS.showError(res.message, 'Error');
+          }
+        },
+        error: err => {
+          this.generalS.showError(err, 'Error');
+        }
+      })
+    } else {
+      this.roleForm = this.initializeRoleForm();
+    }
+
   }
 
 
@@ -48,14 +64,43 @@ export class RoleAddEditComponent {
     if (this.roleForm.invalid) return;
 
     if (this.roleForm.valid) {
-      console.log(this.roleForm.value);
-      this.generalS.showSuccess('Role Added Successfully', 'Success');
-      this.router.navigate(['/role']);
+      // console.log(this.roleForm.value);
+      // this.generalS.showSuccess('Role Added Successfully', 'Success');
+      // this.router.navigate(['/role']);
+      this.loading = true;
+
+      this.roleForm.addControl('slug', this.fb.control(' '));
+      this.roleForm.addControl('content', this.fb.control(' '));
+      this.roleForm.addControl('status', this.fb.control(' '));
+
+      this.generalS.addRole(this.roleForm.value).subscribe({
+        next: res => {
+          this.loading = false;
+          if (!res.error) {
+            this.generalS.showSuccess(res.message, 'Success');
+            this.router.navigate(['/role']);
+          }
+          else {
+            this.generalS.showError(res.message, 'Error');
+          }
+
+        },
+        error: err => {
+          this.loading = false;
+          this.generalS.showError(err, 'Error');
+        }
+      }
+
+      )
+
+
     }
   }
 
 
   initializeRoleForm(roleData?: any) {
+    // console.log('here')
+
     let permissions: any = [];
     permissions = [
       {
@@ -95,6 +140,7 @@ export class RoleAddEditComponent {
         "permission": "user"
       }
     ]
+
     // check if roleData.permissions is not empty then assign it to permissions
     if (roleData?.permissions) {
       permissions = roleData.permissions;

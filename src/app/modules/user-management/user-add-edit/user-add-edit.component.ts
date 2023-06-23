@@ -29,6 +29,8 @@ export class UserAddEditComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
   isSubmitted: boolean = false;
   loading = false;
+  userList: any = []
+  roleList: any = []
 
   constructor(
     private fb: FormBuilder,
@@ -60,6 +62,34 @@ export class UserAddEditComponent implements OnInit {
     this.activateR.params.subscribe(params => {
       console.log('id => ', params['id'])
     })
+
+    this.generalS.getAllUser().subscribe({
+      next: (res) => {
+        if (!res.error) {
+          this.roleList = res.data;
+        } else {
+          this.generalS.showError(res.message, 'Error');
+        }
+      },
+      error: (error) => {
+        this.generalS.showError(error, 'Error');
+      }
+    })
+
+
+    this.generalS.getAllRole().subscribe({
+      next: (res) => {
+        if (!res.error) {
+          this.roleList = res.data;
+        } else {
+          this.generalS.showError(res.message, 'Error');
+        }
+      },
+      error: (error) => {
+        this.generalS.showError(error, 'Error');
+      }
+    })
+
   }
 
   // convenience getter for easy access to form fields

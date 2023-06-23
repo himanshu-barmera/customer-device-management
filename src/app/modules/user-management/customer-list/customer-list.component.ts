@@ -41,16 +41,21 @@ export class CustomerListComponent implements OnInit, AfterViewInit {
   }
 
   getAllUserData() {
-    this.generalS.getAllUser().subscribe(res => {
-      console.log(res);
-      if (res.statusCode === 200) {
-        this.dataSource = new MatTableDataSource<PeriodicElement>(res.data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        this.generalS.showSuccess(res.message, 'Success');
+    this.generalS.getAllUser().subscribe({
+      next: res => {
+        console.log(res);
+        if (res.statusCode === 200) {
+          this.dataSource = new MatTableDataSource<PeriodicElement>(res.data);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          this.generalS.showSuccess(res.message, 'Success');
+        }
+        else
+          this.generalS.showError(res.message, 'Error');
+      },
+      error: err => {
+        this.generalS.showError(err, 'Error');
       }
-      else
-        this.generalS.showError(res.message, 'Error');
     })
   }
 

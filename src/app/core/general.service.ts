@@ -29,8 +29,8 @@ export class GeneralService {
   }
 
   getAllUser(): Observable<any> {
-    return this.http.get('../../assets/data/user-data.json');
-    // return this.http.get(`${environment.baseURL}/`);
+    // return this.http.get('../../assets/data/user-data.json');
+    return this.http.get(`${environment.baseURL}/sys/manage/users`);
   }
 
   addNewUser(userData: any): Observable<any> {
@@ -48,10 +48,7 @@ export class GeneralService {
     return this.http.get('../../assets/data/device-data.json');
   }
 
-  getRoleById(roleId: number): Observable<any> {
-    // return this.http.post('../../assets/data/role-data.json',{roleId});
-    return this.http.get('../../assets/data/single-role-data.json');
-  }
+
 
   getUserDeviceList(userId: any): Observable<any> {
     return this.http.get('../../assets/data/user-device-data.json');
@@ -76,6 +73,21 @@ export class GeneralService {
   deleteDeviceType(deviceTypeId: string): Observable<any> {
     return this.http.delete(`${environment.baseURL}/sys/hw_type/${deviceTypeId}`);
   }
+
+  addRole(roleData: any): Observable<any> {
+    return this.http.post(`${environment.baseURL}/sys/manage/roles`, roleData);
+  }
+
+  getRoleById(roleId: number): Observable<any> {
+    return this.http.get(`${environment.baseURL}/sys/manage/roles/${roleId}`);
+    // return this.http.get('../../assets/data/single-role-data.json');
+  }
+
+  addDevice(deviceData: any): Observable<any> {
+    return this.http.post(`${environment.baseURL}/sys/manage/devices`, deviceData);
+  }
+
+
 
 
 

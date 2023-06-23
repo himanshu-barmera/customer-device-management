@@ -13,6 +13,7 @@ export class DeviceAddEditComponent {
   isSubmitted: boolean = false;
   userList: any = [];
   deviceTypeList: any = [];
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -28,15 +29,30 @@ export class DeviceAddEditComponent {
 
     this.createDeviceForm();
 
-    this.generalS.getAllUser().subscribe(res => {
-      if (res.statusCode === 200) {
-        this.userList = res.data;
+    this.generalS.getAllUser().subscribe({
+      next: res => {
+        if (!res.error) {
+          this.userList = res.data;
+        } else {
+          this.generalS.showError(res.message, 'Error');
+        }
+      },
+      error: err => {
+        this.generalS.showError(err, 'Error');
       }
     })
 
-    this.generalS.getAllDeviceType().subscribe(res => {
-      if (res.statusCode === 200) {
-        this.deviceTypeList = res.data;
+    this.generalS.getAllDeviceType().subscribe({
+
+      next: res => {
+        if (!res.error) {
+          this.deviceTypeList = res.data;
+        } else {
+          this.generalS.showError(res.message, 'Error');
+        }
+      },
+      error: err => {
+        this.generalS.showError(err, 'Error');
       }
     })
   }
@@ -60,9 +76,22 @@ export class DeviceAddEditComponent {
     if (this.deviceForm.invalid) return;
 
     if (this.deviceForm.valid) {
-      console.log(this.deviceForm.value);
-      this.generalS.showSuccess('Device Added Successfully', 'Success');
-      this.router.navigate(['/device']);
+      this.loading = true;
+      this.generalS.addDevice(this.deviceForm.value).subscribe({
+        next: (res) => {
+          this.loading = false;
+          if (!res.error) {
+            this.generalS.showSuccess(res.message, 'Success');
+            this.router.navigate(['/device']);
+          } else {
+            this.generalS.showError(res.message, 'Error');
+          }
+        },
+        error: (err) => {
+          this.loading = false;
+          this.generalS.showError(err, 'Error');
+        }
+      })
     }
   }
 }

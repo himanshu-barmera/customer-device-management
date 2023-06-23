@@ -32,11 +32,21 @@ export class AddEditComponent implements OnInit {
 
   getDeviceType(deviceTypeId: string) {
     if (deviceTypeId) {
-      // this.generalS.getDeviceTypeById(deviceTypeId).subscribe(res => {
-      //   console.log('res => ')
-      //   console.log(res)
-      //   // this.deviceForm.patchValue(res)
-      // })
+      this.generalS.getDeviceTypeById(deviceTypeId).subscribe({
+        next: res => {
+          console.log('get devicetype by id => ')
+          console.log(res)
+          if (!res.error) {
+            // this.generalS.showSuccess(res.message, 'Success');
+            // this.deviceForm.patchValue(res)
+          } else {
+            this.generalS.showError(res.message, 'Error');
+          }
+        },
+        error: err => {
+          this.generalS.showError(err, "Error");
+        }
+      })
     }
   }
 
@@ -72,7 +82,7 @@ export class AddEditComponent implements OnInit {
           }
         },
         error: (err) => {
-          this.generalS.showError(err, "Logged In Error");
+          this.generalS.showError(err, "Error");
           this.loading = false;
         }
       })

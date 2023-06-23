@@ -97,9 +97,10 @@
               <select class="form-control" formControlName="role" required
                 [ngClass]="{'is-invalid':isSubmitted && userForm.get('role')?.invalid }">
                 <option value="">Select Role</option>
-                <option value="1">Super Admin</option>
+                <option value="roles.id" *ngFor="let roles of roleList">{{roles.title}}</option>
+                <!-- <option value="1">Super Admin</option>
                 <option value="2">Customer</option>
-                <option value="3">User</option>
+                <option value="3">User</option> -->
               </select>
               <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('role')?.invalid">
                 Role is required
@@ -144,12 +145,13 @@
               <select class="form-control" formControlName="customerName" required
                 [ngClass]="{'is-invalid':isSubmitted && userForm.get('customerName')?.invalid }">
                 <option value="">Select Customer</option>
-                <option value="1">Customer 1</option>
+                <option value="{{users.id}}" *ngFor="let users of userList">{{users.name}}</option>
+                <!-- <option value="1">Customer 1</option>
                 <option value="2">Customer 2</option>
                 <option value="3">Customer 3</option>
                 <option value="4">Customer 4</option>
                 <option value="5">Customer 5</option>
-                <option value="6">Customer 6</option>
+                <option value="6">Customer 6</option> -->
               </select>
               <span class="col-12 text-danger" *ngIf="isSubmitted && userForm.get('customerName')?.invalid">
                 Customer Name is required
