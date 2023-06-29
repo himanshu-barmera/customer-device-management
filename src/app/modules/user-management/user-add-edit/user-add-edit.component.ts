@@ -79,6 +79,7 @@ export class UserAddEditComponent implements OnInit {
           console.log(res)
           if (!res.error) {
             this.userForm.patchValue(res.data)
+            this.userForm.addControl('id', this.fb.control(res.data.id))
           } else {
             this.generalS.showError(res.message, 'Error');
           }
@@ -130,6 +131,18 @@ export class UserAddEditComponent implements OnInit {
     console.log('userForm')
     console.log(this.userForm)
 
+    if (this.userForm.value.id) {
+      if (!this.userForm.value.password.length) {
+        this.userForm.get('password')?.clearValidators();
+        this.userForm.get('password')?.updateValueAndValidity();
+      }
+
+      if (!this.userForm.value.confirmPassword.length) {
+        this.userForm.get('confirmPassword')?.clearValidators();
+        this.userForm.get('confirmPassword')?.updateValueAndValidity();
+      }
+    }
+
     if (this.userForm.invalid) return;
 
     if (this.userForm.valid) {
@@ -138,16 +151,6 @@ export class UserAddEditComponent implements OnInit {
       let apiMethod: any;
 
       if (this.userForm.value.id) {
-        if (!this.userForm.get('password')?.value) {
-          this.userForm.get('password')?.clearValidators();
-          this.userForm.get('password')?.updateValueAndValidity();
-        }
-
-        if (!this.userForm.get('confirmPassword')?.value) {
-          this.userForm.get('confirmPassword')?.clearValidators();
-          this.userForm.get('confirmPassword')?.updateValueAndValidity();
-        }
-
         apiMethod = this.generalS.updateUser(this.userForm.value)
       } else {
         apiMethod = this.generalS.addNewUser(this.userForm.value)

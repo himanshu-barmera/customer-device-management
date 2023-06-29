@@ -130,6 +130,12 @@ export class GeneralService {
   }
 
 
+  userCount(): Observable<any> {
+    return this.http.get(`${environment.baseURL}/dashboard/counts/users`);
+
+  }
+
+
 
 
 

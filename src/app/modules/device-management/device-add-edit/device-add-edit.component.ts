@@ -51,8 +51,8 @@ export class DeviceAddEditComponent implements OnInit, AfterViewInit {
             this.deviceForm.patchValue({
               devId: res.data.devId,
               deviceName: res.data.hardware.deviceName,
-              user: res.data.user,
-              deviceType: res.data.hardware.hardwareTypeId,
+              dealerId: res.data.battery.dealerId,
+              hardwareTypeId: res.data.hardware.hardwareTypeId,
               macId: res.data.hardware.macId,
             });
             this.deviceForm.addControl('bmsid', this.fb.control(res.data.id));
@@ -72,8 +72,8 @@ export class DeviceAddEditComponent implements OnInit, AfterViewInit {
     this.deviceForm = this.fb.group({
       devId: ['', [Validators.required]],
       deviceName: ['', [Validators.required]],
-      user: ['', [Validators.required]],
-      deviceType: ['', [Validators.required]],
+      dealerId: ['', [Validators.required]],
+      hardwareTypeId: ['', [Validators.required]],
       macId: ['', [Validators.required]],
     })
   }
@@ -90,7 +90,7 @@ export class DeviceAddEditComponent implements OnInit, AfterViewInit {
     if (this.deviceForm.valid) {
       this.loading = true;
 
-      this.deviceForm.addControl('inventory', this.fb.control(true));
+      this.deviceForm.addControl('inventory', this.fb.control(false));
       this.deviceForm.addControl('immobiliser_manufacturer', this.fb.control(false));
       this.deviceForm.addControl('immobiliser_cust', this.fb.control(false));
 

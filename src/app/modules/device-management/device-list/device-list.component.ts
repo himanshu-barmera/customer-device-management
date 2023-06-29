@@ -86,8 +86,8 @@ export class DeviceListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((dialogResult: any) => {
-      console.log('this.resp')
-      console.log(this.resp)
+      // console.log('this.resp')
+      // console.log(this.resp)
       this.resp = dialogResult;
       if (this.resp) {
 
@@ -101,8 +101,8 @@ export class DeviceListComponent implements OnInit {
         dialogRef1.afterClosed().subscribe((dialogResult1: any) => {
           this.resp1 = dialogResult1;
 
-          console.log('this.resp1')
-          console.log(this.resp1)
+          // console.log('this.resp1')
+          // console.log(this.resp1)
 
           // {password: '12345678', action: true}
 
@@ -123,11 +123,6 @@ export class DeviceListComponent implements OnInit {
           }
 
         })
-
-
-
-
-
 
       }
     });

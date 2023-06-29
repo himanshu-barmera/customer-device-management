@@ -31,27 +31,27 @@
           <div class="row my-3">
             <div class="col-md-6">
               <label class="mb-1">Users <span class="text-danger">*</span></label>
-              <select class="form-control" formControlName="user" required
-                [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('user')?.invalid }">
+              <select class="form-control" formControlName="dealerId" required
+                [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('dealerId')?.invalid }">
                 <option value="">Select User</option>
                 <option value="{{user.id}}" *ngFor="let user of userList">
                   {{user.firstName+' '+ user.lastName}}
                 </option>
               </select>
 
-              <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('user')?.invalid">
+              <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('dealerId')?.invalid">
                 User is required
               </span>
             </div>
             <div class="col-md-6">
               <label class="mb-1">Device Type <span class="text-danger">*</span></label>
-              <select class="form-control" formControlName="deviceType" required
-                [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('deviceType')?.invalid }">
+              <select class="form-control" formControlName="hardwareTypeId" required
+                [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('hardwareTypeId')?.invalid }">
                 <option value="">Select Device Type</option>
                 <option value="{{item.id}}" *ngFor="let item of deviceTypeList">
                   {{item.hardwareType}}</option>
               </select>
-              <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('deviceType')?.invalid">
+              <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('hardwareTypeId')?.invalid">
                 Device Type is required
               </span>
             </div>

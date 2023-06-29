@@ -47,6 +47,8 @@ export class RoleAddEditComponent {
           if (!res.error) {
             this.roleData = res.data[0];
             this.roleForm = this.initializeRoleForm(res.data[0]);
+            this.roleForm.addControl('id', this.fb.control(res.data[0].id));
+
           } else {
             this.generalS.showError(res.message, 'Error');
           }
@@ -170,7 +172,6 @@ export class RoleAddEditComponent {
         })
       ]),
       status: [null, [Validators.required]],
-      id: ['']
     })
   }
 }
