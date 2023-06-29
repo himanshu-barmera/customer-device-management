@@ -13,6 +13,7 @@ export interface PeriodicElement {
   // id: number,
   firstName: string,
   lastName: string,
+  companyName: string,
   email: number,
   role: string,
   phoneNumber: number,
@@ -27,7 +28,7 @@ export interface PeriodicElement {
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'role', 'phoneNumber', 'userName', 'createdAt', 'actions'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'companyName', 'email', 'role', 'phoneNumber', 'userName', 'createdAt', 'actions'];
   dataSource: any;
   inputControl = new FormControl('');
 
@@ -95,20 +96,19 @@ export class CustomerListComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe((dialogResult: any) => {
       this.resp = dialogResult;
       if (this.resp) {
-        // this.generalS.deleteRole(data.id).subscribe(
-        //   {
-        //     next: res => {
-        //       if (!res.error) {
-        //         this.generalS.showSuccess(res.message, 'Success');
-        //         this.getAllRoles();
-        //       } else {
-        //         this.generalS.showError(res.message, 'Error');
-        //       }
-        //     },
-        //     error: err => {
-        //       this.generalS.showError(err.message, 'Error');
-        //     }
-        //   })
+        this.generalS.deleteUser(data.id).subscribe({
+          next: res => {
+            if (!res.error) {
+              this.generalS.showSuccess(res.message, 'Success');
+              this.getAllUserData();
+            } else {
+              this.generalS.showError(res.message, 'Error');
+            }
+          },
+          error: err => {
+            this.generalS.showError(err, 'Error');
+          }
+        })
       }
     });
 

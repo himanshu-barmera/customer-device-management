@@ -3,19 +3,21 @@
     <div class="card mat-elevation-z8">
       <div class="card-body">
 
-        <h2 class="card-title">Add Device</h2>
+        <h2 class="card-title" *ngIf="!deviceId">Add Device</h2>
+        <h2 class="card-title" *ngIf="deviceId">Edit Device</h2>
 
         <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
 
           <div class="row my-3">
             <div class="col-md-6">
               <label class="mb-1">Device ID <span class="text-danger">*</span></label>
-              <input type="text" formControlName="deviceId" class="form-control col-12" required
-                [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('deviceId')?.invalid }">
-              <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('deviceId')?.invalid">
+              <input type="text" formControlName="devId" class="form-control col-12" required
+                [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('devId')?.invalid }">
+              <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('devId')?.invalid">
                 Device Id is required
               </span>
             </div>
+
             <div class="col-md-6">
               <label class="mb-1">Device Name <span class="text-danger">*</span></label>
               <input type="text" formControlName="deviceName" class="form-control col-12" required
@@ -32,24 +34,14 @@
               <select class="form-control" formControlName="user" required
                 [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('user')?.invalid }">
                 <option value="">Select User</option>
-                <option value="{{user.firstName+' '+ user.lastName}}" *ngFor="let user of userList">{{user.firstName+'
-                  '+ user.lastName}}</option>
+                <option value="{{user.id}}" *ngFor="let user of userList">
+                  {{user.firstName+' '+ user.lastName}}
+                </option>
               </select>
 
               <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('user')?.invalid">
                 User is required
               </span>
-
-              <!-- <mat-form-field class="col-12">
-                <mat-label>Select User</mat-label>
-                <mat-select formControlName="user" class="col-12">
-                  <mat-option>-Select User-</mat-option>
-                  <mat-option *ngFor="let user of userList" [value]="user">
-                    {{user.firstName+' '+ user.lastName}}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="deviceForm.controls['user'].hasError('required')">Please select a User</mat-error>
-              </mat-form-field> -->
             </div>
             <div class="col-md-6">
               <label class="mb-1">Device Type <span class="text-danger">*</span></label>
@@ -61,6 +53,17 @@
               </select>
               <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('deviceType')?.invalid">
                 Device Type is required
+              </span>
+            </div>
+          </div>
+
+          <div class="row my-3">
+            <div class="col-md-6">
+              <label class="mb-1">Mac ID <span class="text-danger">*</span></label>
+              <input type="text" formControlName="macId" class="form-control col-12" required
+                [ngClass]="{'is-invalid':isSubmitted && deviceForm.get('macId')?.invalid }">
+              <span class="col-12 text-danger" *ngIf="isSubmitted && deviceForm.get('macId')?.invalid">
+                MacId is required
               </span>
             </div>
           </div>

@@ -73,8 +73,8 @@ export class RoleListComponent implements OnInit {
 
   editRecord(data: any) {
     console.log(data);
-    this.generalS.roleId = data.id;
-    this.router.navigate(['/role/edit']);
+    // this.generalS.roleId = data.id;
+    // this.router.navigate(['/role/edit']);
   }
 
   deleteRecord(data: any) {
@@ -88,23 +88,23 @@ export class RoleListComponent implements OnInit {
       data: dialogData
     });
 
-    dialogRef.afterClosed().subscribe((dialogResult: any) => {
-      this.resp = dialogResult;
-      if (this.resp) {
-        // this.generalS.deleteRole(data.id).subscribe(
-        //   {
-        //     next: res => {
-        //       if (!res.error) {
-        //         this.generalS.showSuccess(res.message, 'Success');
-        //         this.getAllRoles();
-        //       } else {
-        //         this.generalS.showError(res.message, 'Error');
-        //       }
-        //     },
-        //     error: err => {
-        //       this.generalS.showError(err.message, 'Error');
-        //     }
-        //   })
+    dialogRef.beforeClosed().subscribe((dialogResult: any) => {
+      console.log(dialogResult)
+      // this.resp = dialogResult;
+      if (dialogResult) {
+        this.generalS.deleteRole(data.id).subscribe({
+          next: res => {
+            if (!res.error) {
+              this.generalS.showSuccess(res.message, 'Success');
+              this.getAllRoles();
+            } else {
+              this.generalS.showError(res.message, 'Error');
+            }
+          },
+          error: err => {
+            this.generalS.showError(err, 'Error');
+          }
+        })
       }
     });
 

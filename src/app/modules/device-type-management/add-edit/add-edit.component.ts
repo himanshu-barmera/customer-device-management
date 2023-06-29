@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { GeneralService } from 'src/app/core/general.service';
 
 @Component({
@@ -12,20 +13,21 @@ export class AddEditComponent implements OnInit {
   deviceForm: FormGroup = new FormGroup({});
   isSubmitted: boolean = false;
   loading = false;
+  deviceTypeId: any;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private generalS: GeneralService,
-    // private activateR: ActivatedRoute
+    private activateR: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    // this.activateR.params.subscribe(params => {
-    //   console.log('id => ', params['id'])
-    // })
-
-    this.getDeviceType(this.generalS.deviceTypeId);
+    this.activateR.params.subscribe(params => {
+      console.log('id => ', params['id'])
+      this.deviceTypeId = params['id'];
+      this.getDeviceType(this.deviceTypeId);
+    })
 
     this.createDeviceTypeForm();
   }
@@ -34,11 +36,11 @@ export class AddEditComponent implements OnInit {
     if (deviceTypeId) {
       this.generalS.getDeviceTypeById(deviceTypeId).subscribe({
         next: res => {
-          console.log('get devicetype by id => ')
+          console.log('get devicetypeid => ')
           console.log(res)
           if (!res.error) {
-            // this.generalS.showSuccess(res.message, 'Success');
-            // this.deviceForm.patchValue(res)
+            this.deviceForm.patchValue(res.data)
+            this.deviceForm.addControl('id', this.fb.control(res.data.id));
           } else {
             this.generalS.showError(res.message, 'Error');
           }
@@ -53,7 +55,7 @@ export class AddEditComponent implements OnInit {
 
   createDeviceTypeForm() {
     this.deviceForm = this.fb.group({
-      hardwareType: ['', [Validators.required]]
+      hardwareType: ['', [Validators.required]],
     })
   }
 
@@ -69,9 +71,15 @@ export class AddEditComponent implements OnInit {
     if (this.deviceForm.valid) {
       console.log(this.deviceForm.value);
       this.loading = true;
-      this.generalS.addDeviceType(this.deviceForm.value).subscribe({
-
-        next: (res) => {
+      let apiMethod: any;
+      if (this.deviceForm.value.id) {
+        apiMethod = this.generalS.updateDeviceType(this.deviceForm.value);
+      }
+      else {
+        apiMethod = this.generalS.addDeviceType(this.deviceForm.value);
+      }
+      apiMethod.subscribe({
+        next: (res: { error: any; message: string; }) => {
           if (!res.error) {
             this.generalS.showSuccess(res.message, 'Success');
             this.loading = false;
@@ -81,7 +89,7 @@ export class AddEditComponent implements OnInit {
             this.loading = false;
           }
         },
-        error: (err) => {
+        error: (err: string) => {
           this.generalS.showError(err, "Error");
           this.loading = false;
         }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth.service';
@@ -31,13 +31,16 @@ export class UserAddEditComponent implements OnInit {
   loading = false;
   userList: any = []
   roleList: any = []
+  userId: any;
+  isFieldShow: boolean = false
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private generalS: GeneralService,
     private activateR: ActivatedRoute,
-    private authS: AuthService
+    private authS: AuthService,
+    private cdr: ChangeDetectorRef
   ) {
     this.userForm = this.fb.group({
       firstName: ['', [Validators.required]],
@@ -48,11 +51,11 @@ export class UserAddEditComponent implements OnInit {
       companyName: [''],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.compose([Validators.required])],
-      state: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      zip: ['', [Validators.required]],
-      role: ['', [Validators.required]],
-      customerName: ['', [Validators.required]],
+      state: [''],
+      city: [''],
+      zip: [''],
+      roleId: ['', [Validators.required]],
+      manufacturerId: ['', [Validators.required]],
     },
       { validator: ConfirmedValidator('password', 'confirmPassword') }
     )
@@ -60,13 +63,38 @@ export class UserAddEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.activateR.params.subscribe(params => {
-      console.log('id => ', params['id'])
+      this.userId = params['id'];
+      this.getUserById(this.userId);
     })
 
+    this.getAllUsers();
+    this.getAllRoles();
+  }
+
+  getUserById(id: any) {
+    if (id) {
+      this.generalS.getUserDataById(id).subscribe({
+        next: res => {
+          console.log('user data by id')
+          console.log(res)
+          if (!res.error) {
+            this.userForm.patchValue(res.data)
+          } else {
+            this.generalS.showError(res.message, 'Error');
+          }
+        },
+        error: err => {
+          this.generalS.showError(err, 'Error');
+        }
+      })
+    }
+  }
+
+  getAllUsers() {
     this.generalS.getAllUser().subscribe({
       next: (res) => {
         if (!res.error) {
-          this.roleList = res.data;
+          this.userList = res.data;
         } else {
           this.generalS.showError(res.message, 'Error');
         }
@@ -75,8 +103,9 @@ export class UserAddEditComponent implements OnInit {
         this.generalS.showError(error, 'Error');
       }
     })
+  }
 
-
+  getAllRoles() {
     this.generalS.getAllRole().subscribe({
       next: (res) => {
         if (!res.error) {
@@ -89,7 +118,6 @@ export class UserAddEditComponent implements OnInit {
         this.generalS.showError(error, 'Error');
       }
     })
-
   }
 
   // convenience getter for easy access to form fields
@@ -99,17 +127,34 @@ export class UserAddEditComponent implements OnInit {
     this.isSubmitted = true;
     this.userForm.markAllAsTouched();
 
+    console.log('userForm')
+    console.log(this.userForm)
+
     if (this.userForm.invalid) return;
 
     if (this.userForm.valid) {
-      let roleId = JSON.parse(localStorage.getItem('e-c-user') || 'null').roleId;
-      this.userForm.addControl('roleId', this.fb.control(roleId));
-
       this.loading = true;
-      this.generalS.addNewUser(this.userForm.value).subscribe({
-        next: (res) => {
-          // console.log('res')
-          // console.log(res)
+
+      let apiMethod: any;
+
+      if (this.userForm.value.id) {
+        if (!this.userForm.get('password')?.value) {
+          this.userForm.get('password')?.clearValidators();
+          this.userForm.get('password')?.updateValueAndValidity();
+        }
+
+        if (!this.userForm.get('confirmPassword')?.value) {
+          this.userForm.get('confirmPassword')?.clearValidators();
+          this.userForm.get('confirmPassword')?.updateValueAndValidity();
+        }
+
+        apiMethod = this.generalS.updateUser(this.userForm.value)
+      } else {
+        apiMethod = this.generalS.addNewUser(this.userForm.value)
+      }
+
+      apiMethod.subscribe({
+        next: (res: { error: any; statusCode: number; message: string; }) => {
           this.loading = false;
           if (!res.error && res.statusCode === 200) {
             this.generalS.showSuccess(res.message, 'Success');
@@ -118,15 +163,34 @@ export class UserAddEditComponent implements OnInit {
             this.generalS.showError(res.message, 'Error');
           }
         },
-        error: (error) => {
-          // console.log('error');
-          // console.log(error);
-
+        error: (error: any) => {
           this.loading = false;
-          this.generalS.showError(error.message, 'Error');
+          this.generalS.showError(error, 'Error');
         }
       })
     }
   }
+
+  onRoleChange(roleId: any) {
+
+    let tmpData = this.roleList.filter((role: any) => {
+      if (role.id === roleId && role.title === 'manufacturer')
+        return role;
+    })
+
+    if (tmpData.length > 0) {
+      // console.log(tmpData)
+      this.isFieldShow = true;
+      // this.userForm.get('companyName')?.setValidators([Validators.required]);
+      // this.userForm.get('companyName')?.updateValueAndValidity();
+      // this.cdr.markForCheck();
+    } else {
+      this.isFieldShow = false
+      // this.userForm.get('companyName')?.clearValidators();
+      // this.userForm.get('companyName')?.updateValueAndValidity();
+      // this.cdr.markForCheck();
+    }
+  }
+
 
 }

@@ -67,8 +67,8 @@ export class ListComponent implements OnInit {
 
   editRecord(data: any) {
     console.log(data);
-    this.generalS.deviceTypeId = data.id;
-    this.router.navigate(['/device-type/edit']);
+    // this.generalS.deviceTypeId = data.id;
+    // this.router.navigate(['/device-type/edit']);
   }
 
   deleteRecord(data: any) {

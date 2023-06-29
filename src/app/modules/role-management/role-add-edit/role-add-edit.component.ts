@@ -28,9 +28,13 @@ export class RoleAddEditComponent {
 
   ngOnInit(): void {
 
-    console.log(this.generalS.roleId)
+    // this.getRoleById(this.generalS.roleId ? this.generalS.roleId : '')
 
-    this.getRoleById(this.generalS.roleId ? this.generalS.roleId : '')
+    this.activateR.params.subscribe(res => {
+      console.log(res)
+      this.roleId = res['id'];
+      this.getRoleById(this.roleId);
+    })
 
   }
 
@@ -38,6 +42,7 @@ export class RoleAddEditComponent {
     if (id) {
       this.generalS.getRoleById(id).subscribe({
         next: res => {
+          console.log('role data by id')
           console.log(res)
           if (!res.error) {
             this.roleData = res.data[0];
@@ -164,7 +169,8 @@ export class RoleAddEditComponent {
           })
         })
       ]),
-      status: [null, [Validators.required]]
+      status: [null, [Validators.required]],
+      id: ['']
     })
   }
 }

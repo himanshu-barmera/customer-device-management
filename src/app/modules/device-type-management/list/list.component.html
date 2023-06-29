@@ -37,7 +37,8 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-fab color="warn" aria-label="Edit Row" (click)="editRecord(row)" class="mx-2">
+        <button mat-fab color="warn" aria-label="Edit Row" (click)="editRecord(row)" class="mx-2"
+          [routerLink]="['edit',row.id]">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-fab color="danger" aria-label="Delete Row" (click)="deleteRecord(row)">
